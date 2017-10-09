@@ -236,6 +236,7 @@ implements FlowableSubscriber<T>, Subscription, Disposable {
             actual.onError(t);
         } finally {
             done.countDown();
+            j2ojbcCleanUp();
         }
     }
 
@@ -254,7 +255,27 @@ implements FlowableSubscriber<T>, Subscription, Disposable {
             actual.onComplete();
         } finally {
             done.countDown();
+            j2ojbcCleanUp();
         }
+    }
+
+    static Subscription terminalSubscription = new Subscription() {
+        @Override
+        public void request(long n) {
+
+        }
+
+        @Override
+        public void cancel() {
+
+        }
+    };
+
+    //Need to clean up references for j2ojbc, but only if we'd already been subscribed.
+    //Not exactly "atomic" but I couldn't figure out how to do a get/set if not-null
+    private void j2ojbcCleanUp() {
+        if(subscription.get() != null)
+            subscription.set(terminalSubscription);
     }
 
     @Override

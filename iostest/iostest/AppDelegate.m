@@ -18,7 +18,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [CoTouchlabDopplTestingDopplJunitTestHelper runResourceWithNSString:@"TheRest2.txt"];
+    
+//    [CoTouchlabDopplTestingDopplJunitTestHelper runResourceWithNSString:@"tests0.txt"];
+    
+    [CoTouchlabDopplTestingDopplJunitTestHelper runResourceWithNSString:@"InternalOperatorsFlowable.txt"];
+    
+//    [CoTouchlabDopplTestingDopplJunitTestHelper runResourceWithNSString:@"TheRest2.txt"];
     
 //    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.completable.CompletableAmbTest#innerErrorRace"];
 //    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.completable.CompletableAmbTest#goCrashy"];

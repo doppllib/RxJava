@@ -3047,8 +3047,6 @@
 		639D33A31F8AB09700DF0C39 /* IoReactivexCompletableCompletableTest__CompletableCompletableFunction$Moxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 639D339F1F8AB09700DF0C39 /* IoReactivexCompletableCompletableTest__CompletableCompletableFunction$Moxy.m */; };
 		639D33A41F8AB09700DF0C39 /* IoReactivexCompletableCompletableTest__CompletableCompletableObserverCompletableObserverBiFunction$Moxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 639D33A01F8AB09700DF0C39 /* IoReactivexCompletableCompletableTest__CompletableCompletableObserverCompletableObserverBiFunction$Moxy.m */; };
 		639D33A61F8AB14900DF0C39 /* tofix.txt in Resources */ = {isa = PBXBuildFile; fileRef = 639D33A51F8AB14900DF0C39 /* tofix.txt */; };
-		639D33A81F8AB17C00DF0C39 /* tests1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 639D33A71F8AB17C00DF0C39 /* tests1.txt */; };
-		639D33AA1F8AB2BC00DF0C39 /* InternalOperatorsCompletable.txt in Resources */ = {isa = PBXBuildFile; fileRef = 639D33A91F8AB2BC00DF0C39 /* InternalOperatorsCompletable.txt */; };
 		639D33AC1F8AB39600DF0C39 /* InternalOperatorsFlowable.txt in Resources */ = {isa = PBXBuildFile; fileRef = 639D33AB1F8AB39600DF0C39 /* InternalOperatorsFlowable.txt */; };
 		639D33AE1F8AB3F900DF0C39 /* InternalOperatorsMaybe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 639D33AD1F8AB3F900DF0C39 /* InternalOperatorsMaybe.txt */; };
 		639D33B01F8AB50D00DF0C39 /* InternalOperatorsObservalbe.txt in Resources */ = {isa = PBXBuildFile; fileRef = 639D33AF1F8AB50D00DF0C39 /* InternalOperatorsObservalbe.txt */; };
@@ -6154,8 +6152,6 @@
 		639D339F1F8AB09700DF0C39 /* IoReactivexCompletableCompletableTest__CompletableCompletableFunction$Moxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoReactivexCompletableCompletableTest__CompletableCompletableFunction$Moxy.m; sourceTree = "<group>"; };
 		639D33A01F8AB09700DF0C39 /* IoReactivexCompletableCompletableTest__CompletableCompletableObserverCompletableObserverBiFunction$Moxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IoReactivexCompletableCompletableTest__CompletableCompletableObserverCompletableObserverBiFunction$Moxy.m; sourceTree = "<group>"; };
 		639D33A51F8AB14900DF0C39 /* tofix.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = tofix.txt; sourceTree = "<group>"; };
-		639D33A71F8AB17C00DF0C39 /* tests1.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = tests1.txt; sourceTree = "<group>"; };
-		639D33A91F8AB2BC00DF0C39 /* InternalOperatorsCompletable.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = InternalOperatorsCompletable.txt; sourceTree = "<group>"; };
 		639D33AB1F8AB39600DF0C39 /* InternalOperatorsFlowable.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = InternalOperatorsFlowable.txt; sourceTree = "<group>"; };
 		639D33AD1F8AB3F900DF0C39 /* InternalOperatorsMaybe.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = InternalOperatorsMaybe.txt; sourceTree = "<group>"; };
 		639D33AF1F8AB50D00DF0C39 /* InternalOperatorsObservalbe.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = InternalOperatorsObservalbe.txt; sourceTree = "<group>"; };
@@ -9380,8 +9376,6 @@
 				63DF65851F89830C009C910D /* tests0.txt */,
 				639D33A51F8AB14900DF0C39 /* tofix.txt */,
 				639D33BE1F8AC02400DF0C39 /* huge.txt */,
-				639D33A71F8AB17C00DF0C39 /* tests1.txt */,
-				639D33A91F8AB2BC00DF0C39 /* InternalOperatorsCompletable.txt */,
 				639D33AB1F8AB39600DF0C39 /* InternalOperatorsFlowable.txt */,
 				639D33AD1F8AB3F900DF0C39 /* InternalOperatorsMaybe.txt */,
 				639D33AF1F8AB50D00DF0C39 /* InternalOperatorsObservalbe.txt */,
@@ -11054,7 +11048,6 @@
 				639D33BD1F8ABFC500DF0C39 /* TheRest2.txt in Resources */,
 				637631091F0E8CA900867934 /* dopplTests5.txt in Resources */,
 				639D33B51F8AB90900DF0C39 /* InternalOperatorsObservable2.txt in Resources */,
-				639D33AA1F8AB2BC00DF0C39 /* InternalOperatorsCompletable.txt in Resources */,
 				637631051F0E8C6F00867934 /* dopplTests3.txt in Resources */,
 				639D33A61F8AB14900DF0C39 /* tofix.txt in Resources */,
 				639D33B31F8AB87800DF0C39 /* InternalOperatorsSingle.txt in Resources */,
@@ -11071,7 +11064,6 @@
 				6317299E1E2FEBA5006B3C1B /* Main.storyboard in Resources */,
 				639D33B01F8AB50D00DF0C39 /* InternalOperatorsObservalbe.txt in Resources */,
 				639D33B71F8ABC6B00DF0C39 /* InternalSchedulers_Subscribers.txt in Resources */,
-				639D33A81F8AB17C00DF0C39 /* tests1.txt in Resources */,
 				637631031F0E8C1A00867934 /* dopplTests2.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

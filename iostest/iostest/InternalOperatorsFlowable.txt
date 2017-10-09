@@ -17,7 +17,7 @@ io.reactivex.internal.operators.flowable.FlowableCastTest
 io.reactivex.internal.operators.flowable.FlowableCombineLatestTest
 io.reactivex.internal.operators.flowable.FlowableConcatDelayErrorTest
 io.reactivex.internal.operators.flowable.FlowableConcatMapEagerTest
-io.reactivex.internal.operators.flowable.FlowableConcatTest
+#io.reactivex.internal.operators.flowable.FlowableConcatTest
 io.reactivex.internal.operators.flowable.FlowableCountTest
 io.reactivex.internal.operators.flowable.FlowableCreateTest
 io.reactivex.internal.operators.flowable.FlowableDebounceTest
