@@ -40,9 +40,6 @@ import io.reactivex.schedulers.Schedulers;
 
 public class TestSubscriberTest {
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void testAssert() {
         Flowable<Integer> oi = Flowable.fromIterable(Arrays.asList(1, 2));
@@ -60,13 +57,20 @@ public class TestSubscriberTest {
         TestSubscriber<Integer> o = new TestSubscriber<Integer>();
         oi.subscribe(o);
 
-        thrown.expect(AssertionError.class);
         // FIXME different message pattern
         // thrown.expectMessage("Number of items does not match. Provided: 1  Actual: 2");
 
         o.assertValues(1);
         o.assertValueCount(2);
-        o.assertTerminated();
+        try
+        {
+            o.assertTerminated();
+            fail("Didn't throw");
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError);
+        }
     }
 
     @Test
@@ -75,14 +79,20 @@ public class TestSubscriberTest {
         TestSubscriber<Integer> o = new TestSubscriber<Integer>();
         oi.subscribe(o);
 
-        thrown.expect(AssertionError.class);
         // FIXME different message pattern
         // thrown.expectMessage("Value at index: 1 expected to be [3] (Integer) but was: [2] (Integer)");
 
-
-        o.assertValues(1, 3);
-        o.assertValueCount(2);
-        o.assertTerminated();
+        try
+        {
+            o.assertValues(1, 3);
+            o.assertValueCount(2);
+            o.assertTerminated();
+            fail("Didn't throw");
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError);
+        }
     }
 
     @Test
@@ -104,11 +114,17 @@ public class TestSubscriberTest {
 
         o.assertValues(1, 2);
 
-        thrown.expect(AssertionError.class);
-
-        o.assertNever(2);
         o.assertValueCount(2);
-        o.assertTerminated();
+        try
+        {
+            o.assertNever(2);
+            o.assertTerminated();
+            fail("Didn't throw");
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError);
+        }
     }
 
     @Test
@@ -119,14 +135,20 @@ public class TestSubscriberTest {
 
         ts.assertValues(1, 2);
 
-        thrown.expect(AssertionError.class);
-
-        ts.assertNever(new Predicate<Integer>() {
-            @Override
-            public boolean test(final Integer o) throws Exception {
-                return o == 1;
-            }
-        });
+        try
+        {
+            ts.assertNever(new Predicate<Integer>() {
+                @Override
+                public boolean test(final Integer o) throws Exception {
+                    return o == 1;
+                }
+            });
+            fail("Didn't throw");
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError);
+        }
     }
 
     @Test
@@ -152,13 +174,20 @@ public class TestSubscriberTest {
         p.onNext(1);
         p.onNext(2);
 
-        thrown.expect(AssertionError.class);
         // FIXME different message pattern
         // thrown.expectMessage("No terminal events received.");
 
         o.assertValues(1, 2);
         o.assertValueCount(2);
-        o.assertTerminated();
+        try
+        {
+            o.assertTerminated();
+            fail("Didn't throw");
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError);
+        }
     }
 
     @Test
@@ -1658,13 +1687,25 @@ public class TestSubscriberTest {
 
         Flowable.empty().subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("No values");
-        ts.assertValue(new Predicate<Object>() {
-            @Override public boolean test(final Object o) throws Exception {
-                return false;
-            }
-        });
+        List<Throwable> errors = ts.errors();
+        for(Throwable error : errors)
+        {
+            String message = error.getMessage();
+            System.out.println(message);
+        }
+
+        try
+        {
+            ts.assertValue(new Predicate<Object>() {
+                @Override public boolean test(final Object o) throws Exception {
+                    return false;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("No values"));
+        }
     }
 
     @Test
@@ -1686,13 +1727,18 @@ public class TestSubscriberTest {
 
         Flowable.just(1).subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("Value not present");
-        ts.assertValue(new Predicate<Integer>() {
-            @Override public boolean test(final Integer o) throws Exception {
-                return o != 1;
-            }
-        });
+        try
+        {
+            ts.assertValue(new Predicate<Integer>() {
+                @Override public boolean test(final Integer o) throws Exception {
+                    return o != 1;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("Value not present"));
+        }
     }
 
     @Test
@@ -1701,13 +1747,18 @@ public class TestSubscriberTest {
 
         Flowable.just(1, 2).subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("Value present but other values as well");
-        ts.assertValue(new Predicate<Integer>() {
-            @Override public boolean test(final Integer o) throws Exception {
-                return o == 1;
-            }
-        });
+        try
+        {
+            ts.assertValue(new Predicate<Integer>() {
+                @Override public boolean test(final Integer o) throws Exception {
+                    return o == 1;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("Value present but other values as well"));
+        }
     }
 
     @Test
@@ -1716,13 +1767,18 @@ public class TestSubscriberTest {
 
         Flowable.empty().subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("No values");
-        ts.assertValueAt(0, new Predicate<Object>() {
-            @Override public boolean test(final Object o) throws Exception {
-                return false;
-            }
-        });
+        try
+        {
+            ts.assertValueAt(0, new Predicate<Object>() {
+                @Override public boolean test(final Object o) throws Exception {
+                    return false;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("No values"));
+        }
     }
 
     @Test
@@ -1744,13 +1800,18 @@ public class TestSubscriberTest {
 
         Flowable.just(1, 2, 3).subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("Value not present");
-        ts.assertValueAt(2, new Predicate<Integer>() {
-            @Override public boolean test(final Integer o) throws Exception {
-                return o != 3;
-            }
-        });
+        try
+        {
+            ts.assertValueAt(2, new Predicate<Integer>() {
+                @Override public boolean test(final Integer o) throws Exception {
+                    return o != 3;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("Value not present"));
+        }
     }
 
     @Test
@@ -1759,13 +1820,18 @@ public class TestSubscriberTest {
 
         Flowable.just(1, 2).subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("Invalid index: 2 (latch = 0, values = 2, errors = 0, completions = 1)");
-        ts.assertValueAt(2, new Predicate<Integer>() {
-            @Override public boolean test(final Integer o) throws Exception {
-                return o == 1;
-            }
-        });
+        try
+        {
+            ts.assertValueAt(2, new Predicate<Integer>() {
+                @Override public boolean test(final Integer o) throws Exception {
+                    return o == 1;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("Invalid index: 2 (latch = 0, values = 2, errors = 0, completions = 1)"));
+        }
     }
 
     @Test
@@ -1822,6 +1888,7 @@ public class TestSubscriberTest {
 
             fail("Should have thrown!");
         } catch (AssertionError ex) {
+            System.out.println(ex.toString());
             assertTrue(ex.toString(), ex.toString().contains("timeout!"));
         }
     }
@@ -1907,8 +1974,17 @@ public class TestSubscriberTest {
     @Test
     public void awaitCountTimeout() {
         TestSubscriber<Object> ts = Flowable.never()
-        .test()
-        .awaitCount(1, TestWaitStrategy.SLEEP_1MS, 50);
+        .test();
+
+        try
+        {
+            ts
+            .awaitCount(1, TestWaitStrategy.SLEEP_1MS, 50);
+        }
+        catch(Exception e)
+        {
+
+        }
 
         assertTrue(ts.isTimeout());
         ts.clearTimeout();

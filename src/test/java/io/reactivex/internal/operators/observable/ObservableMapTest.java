@@ -245,7 +245,8 @@ public class ObservableMapTest {
 
             @Override
             public Integer apply(Integer i) {
-                return i / 0;
+//                return i / 0;
+                throw new ArithmeticException("Whoops");
             }
 
         }).blockingGet();

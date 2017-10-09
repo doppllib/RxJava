@@ -176,6 +176,7 @@ implements Observer<T>, Disposable, MaybeObserver<T>, SingleObserver<T>, Complet
             actual.onError(t);
         } finally {
             done.countDown();
+//            j2ojbcCleanUp();
         }
     }
 
@@ -195,7 +196,27 @@ implements Observer<T>, Disposable, MaybeObserver<T>, SingleObserver<T>, Complet
             actual.onComplete();
         } finally {
             done.countDown();
+//            j2ojbcCleanUp();
         }
+    }
+
+    static Disposable terminalDisposable = new Disposable() {
+        @Override
+        public void dispose() {
+
+        }
+
+        @Override
+        public boolean isDisposed() {
+            return false;
+        }
+    };
+
+    //Need to clean up references for j2ojbc, but only if we'd already been subscribed.
+    //Not exactly "atomic" but I couldn't figure out how to do a get/set if not-null
+    private void j2ojbcCleanUp() {
+        if(subscription.get() != null)
+            subscription.set(terminalDisposable);
     }
 
     /**

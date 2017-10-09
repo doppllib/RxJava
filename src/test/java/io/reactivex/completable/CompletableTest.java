@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.*;
 import org.junit.*;
 import org.reactivestreams.*;
 
+import co.touchlab.doppl.testing.MockGen;
 import io.reactivex.*;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -43,6 +44,7 @@ import io.reactivex.subscribers.TestSubscriber;
 /**
  * Test Completable methods and operators.
  */
+@MockGen(classes = {"io.reactivex.completable.CompletableTest.CompletableCompletableFunction", "io.reactivex.completable.CompletableTest.CompletableCompletableObserverCompletableObserverBiFunction"})
 public class CompletableTest {
     /**
      * Iterable that returns an Iterator that throws in its hasNext method.
@@ -3718,21 +3720,11 @@ public class CompletableTest {
 
     @Before
     public void setUp() throws Exception {
-        onCreate = spy(new Function<Completable, Completable>() {
-            @Override
-            public Completable apply(Completable t) {
-                return t;
-            }
-        });
+        onCreate = spy(new CompletableCompletableFunction());
 
         RxJavaPlugins.setOnCompletableAssembly(onCreate);
 
-        onStart = spy(new BiFunction<Completable, CompletableObserver, CompletableObserver>() {
-            @Override
-            public CompletableObserver apply(Completable t1, CompletableObserver t2) {
-                return t2;
-            }
-        });
+        onStart = spy(new CompletableCompletableObserverCompletableObserverBiFunction());
 
         RxJavaPlugins.setOnCompletableSubscribe(onStart);
     }
@@ -4586,4 +4578,19 @@ public class CompletableTest {
         assertFalse(pp.hasSubscribers());
     }
 
+    static class CompletableCompletableFunction implements Function<Completable, Completable>
+    {
+        @Override
+        public Completable apply(Completable t) {
+            return t;
+        }
+    }
+
+    static class CompletableCompletableObserverCompletableObserverBiFunction implements BiFunction<Completable, CompletableObserver, CompletableObserver>
+    {
+        @Override
+        public CompletableObserver apply(Completable t1, CompletableObserver t2) {
+            return t2;
+        }
+    }
 }

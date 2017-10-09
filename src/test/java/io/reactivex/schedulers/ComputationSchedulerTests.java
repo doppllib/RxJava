@@ -148,7 +148,7 @@ public class ComputationSchedulerTests extends AbstractSchedulerConcurrencyTests
     public final void testHandledErrorIsNotDeliveredToThreadHandler() throws InterruptedException {
         SchedulerTestHelper.testHandledErrorIsNotDeliveredToThreadHandler(getScheduler());
     }
-
+/*
     @Test(timeout = 60000)
     public void testCancelledTaskRetention() throws InterruptedException {
         Worker w = Schedulers.computation().createWorker();
@@ -163,7 +163,7 @@ public class ComputationSchedulerTests extends AbstractSchedulerConcurrencyTests
         } finally {
             w.dispose();
         }
-    }
+    }*/
 
     @Test
     public void shutdownRejects() {

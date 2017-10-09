@@ -13,6 +13,9 @@
 
 package io.reactivex.processors;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
+import co.touchlab.doppl.testing.DopplHacks;
 import io.reactivex.TestHelper;
 import io.reactivex.exceptions.TestException;
 import io.reactivex.functions.Consumer;
@@ -31,8 +34,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Matchers.any;
+
 import static org.mockito.Mockito.*;
 
 public class AsyncProcessorTest extends DelayedFlowableProcessorTest<Object> {

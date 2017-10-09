@@ -1,0 +1,12 @@
+io.reactivex.BackpressureEnumTest
+io.reactivex.completable.CompletableTest
+io.reactivex.completable.CompletableTimerTest
+io.reactivex.disposables.CompositeDisposableTest
+io.reactivex.disposables.DisposablesTest
+io.reactivex.disposables.FutureDisposableTest
+io.reactivex.disposables.SequentialDisposableTest
+io.reactivex.exceptions.CompositeExceptionTest
+io.reactivex.exceptions.ExceptionsNullTest
+#io.reactivex.exceptions.ExceptionsTest
+io.reactivex.exceptions.OnErrorNotImplementedExceptionTest
+io.reactivex.exceptions.OnNextValueTest

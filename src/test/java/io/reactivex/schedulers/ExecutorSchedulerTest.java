@@ -15,7 +15,6 @@ package io.reactivex.schedulers;
 
 import static org.junit.Assert.*;
 
-import java.lang.management.*;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -50,7 +49,7 @@ public class ExecutorSchedulerTest extends AbstractSchedulerConcurrencyTests {
         SchedulerTestHelper.testHandledErrorIsNotDeliveredToThreadHandler(getScheduler());
     }
 
-    public static void testCancelledRetention(Scheduler.Worker w, boolean periodic) throws InterruptedException {
+    /*public static void testCancelledRetention(Scheduler.Worker w, boolean periodic) throws InterruptedException {
         System.out.println("Wait before GC");
         Thread.sleep(1000);
 
@@ -130,9 +129,9 @@ public class ExecutorSchedulerTest extends AbstractSchedulerConcurrencyTests {
         if (finish > initial * 5) {
             fail(String.format("Tasks retained: %.3f -> %.3f -> %.3f", initial / 1024 / 1024.0, after / 1024 / 1024.0, finish / 1024 / 1024d));
         }
-    }
+    }*/
 
-    @Test(timeout = 60000)
+    /*@Test(timeout = 60000)
     public void testCancelledTaskRetention() throws InterruptedException {
         ExecutorService exec = Executors.newSingleThreadExecutor();
         Scheduler s = Schedulers.from(exec);
@@ -153,7 +152,7 @@ public class ExecutorSchedulerTest extends AbstractSchedulerConcurrencyTests {
         } finally {
             exec.shutdownNow();
         }
-    }
+    }*/
 
     /** A simple executor which queues tasks and executes them one-by-one if executeOne() is called. */
     static final class TestExecutor implements Executor {

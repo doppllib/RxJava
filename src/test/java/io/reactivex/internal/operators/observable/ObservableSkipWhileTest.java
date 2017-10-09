@@ -13,7 +13,7 @@
 
 package io.reactivex.internal.operators.observable;
 
-import static org.mockito.ArgumentMatchers.*;
+
 import static org.mockito.Mockito.*;
 
 import org.junit.Test;

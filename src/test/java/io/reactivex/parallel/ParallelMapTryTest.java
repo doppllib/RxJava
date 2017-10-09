@@ -17,6 +17,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import co.touchlab.doppl.testing.DopplHacks;
+import co.touchlab.doppl.utils.PlatformUtils;
 import io.reactivex.*;
 import io.reactivex.exceptions.*;
 import io.reactivex.functions.*;
@@ -82,12 +84,17 @@ public class ParallelMapTryTest implements Consumer<Object> {
     }
 
     @Test
+    @DopplHacks //Div by 0
     public void mapFailWithError() {
+        if(PlatformUtils.isJ2objc())
+            return;
         Flowable.range(0, 2)
         .parallel(1)
         .map(new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v;
             }
         }, ParallelFailureHandling.ERROR)
@@ -103,6 +110,8 @@ public class ParallelMapTryTest implements Consumer<Object> {
         .map(new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v;
             }
         }, ParallelFailureHandling.STOP)
@@ -122,6 +131,8 @@ public class ParallelMapTryTest implements Consumer<Object> {
                 if (count++ == 1) {
                     return -1;
                 }
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v;
             }
         }, ParallelFailureHandling.RETRY)
@@ -137,6 +148,8 @@ public class ParallelMapTryTest implements Consumer<Object> {
         .map(new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v;
             }
         }, new BiFunction<Long, Throwable, ParallelFailureHandling>() {
@@ -157,6 +170,8 @@ public class ParallelMapTryTest implements Consumer<Object> {
         .map(new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v;
             }
         }, ParallelFailureHandling.SKIP)
@@ -173,6 +188,8 @@ public class ParallelMapTryTest implements Consumer<Object> {
         .map(new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v;
             }
         }, new BiFunction<Long, Throwable, ParallelFailureHandling>() {
@@ -212,12 +229,17 @@ public class ParallelMapTryTest implements Consumer<Object> {
     }
 
     @Test
+    @DopplHacks //Div by 0
     public void mapFailWithErrorConditional() {
+        if(PlatformUtils.isJ2objc())
+            return;
         Flowable.range(0, 2)
         .parallel(1)
         .map(new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v;
             }
         }, ParallelFailureHandling.ERROR)
@@ -234,6 +256,8 @@ public class ParallelMapTryTest implements Consumer<Object> {
         .map(new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v;
             }
         }, ParallelFailureHandling.STOP)
@@ -254,6 +278,8 @@ public class ParallelMapTryTest implements Consumer<Object> {
                 if (count++ == 1) {
                     return -1;
                 }
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v;
             }
         }, ParallelFailureHandling.RETRY)
@@ -270,6 +296,8 @@ public class ParallelMapTryTest implements Consumer<Object> {
         .map(new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v;
             }
         }, new BiFunction<Long, Throwable, ParallelFailureHandling>() {
@@ -291,6 +319,8 @@ public class ParallelMapTryTest implements Consumer<Object> {
         .map(new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v;
             }
         }, ParallelFailureHandling.SKIP)
@@ -308,6 +338,8 @@ public class ParallelMapTryTest implements Consumer<Object> {
         .map(new Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v;
             }
         }, new BiFunction<Long, Throwable, ParallelFailureHandling>() {

@@ -16,7 +16,6 @@ package io.reactivex.maybe;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
-import java.lang.management.*;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -3027,15 +3026,15 @@ public class MaybeTest {
         }).test().assertResult(5);
     }
 
-    static long usedMemoryNow() {
+    /*static long usedMemoryNow() {
         MemoryMXBean memoryMXBean = ManagementFactory.getMemoryMXBean();
 
         MemoryUsage heapMemoryUsage = memoryMXBean.getHeapMemoryUsage();
 
         return heapMemoryUsage.getUsed();
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void onTerminateDetach() throws Exception {
         System.gc();
 
@@ -3094,7 +3093,7 @@ public class MaybeTest {
         }
 
         assertNotNull(observer); // hold onto the reference to prevent premature GC
-    }
+    }*/
 
     @Test
     public void repeat() {

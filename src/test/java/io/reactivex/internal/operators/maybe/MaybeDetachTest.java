@@ -20,6 +20,8 @@ import java.lang.ref.WeakReference;
 
 import org.junit.Test;
 
+import co.touchlab.doppl.testing.DopplHacks;
+import co.touchlab.doppl.utils.PlatformUtils;
 import io.reactivex.*;
 import io.reactivex.disposables.*;
 import io.reactivex.exceptions.TestException;
@@ -62,7 +64,10 @@ public class MaybeDetachTest {
     }
 
     @Test
+    @DopplHacks
     public void cancelDetaches() throws Exception {
+        if(PlatformUtils.isJ2objc())
+            return;
         Disposable d = Disposables.empty();
         final WeakReference<Disposable> wr = new WeakReference<Disposable>(d);
 
@@ -88,7 +93,10 @@ public class MaybeDetachTest {
     }
 
     @Test
+    @DopplHacks
     public void completeDetaches() throws Exception {
+        if(PlatformUtils.isJ2objc())
+            return;
         Disposable d = Disposables.empty();
         final WeakReference<Disposable> wr = new WeakReference<Disposable>(d);
 
@@ -114,7 +122,10 @@ public class MaybeDetachTest {
     }
 
     @Test
+    @DopplHacks
     public void errorDetaches() throws Exception {
+        if(PlatformUtils.isJ2objc())
+            return;
         Disposable d = Disposables.empty();
         final WeakReference<Disposable> wr = new WeakReference<Disposable>(d);
 
@@ -140,7 +151,10 @@ public class MaybeDetachTest {
     }
 
     @Test
+    @DopplHacks
     public void successDetaches() throws Exception {
+        if(PlatformUtils.isJ2objc())
+            return;
         Disposable d = Disposables.empty();
         final WeakReference<Disposable> wr = new WeakReference<Disposable>(d);
 

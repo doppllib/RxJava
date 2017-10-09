@@ -14,7 +14,7 @@
 package io.reactivex.internal.operators.observable;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.*;
+
 import static org.mockito.Mockito.*;
 
 import java.util.*;
@@ -24,6 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.*;
 import org.mockito.InOrder;
 
+import co.touchlab.doppl.testing.DopplHacks;
 import io.reactivex.*;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -546,11 +547,14 @@ public class ObservableZipTest {
         };
     }
 
+    @DopplHacks //Div by 0
     private BiFunction<Integer, Integer, Integer> getDivideZipr() {
         BiFunction<Integer, Integer, Integer> zipr = new BiFunction<Integer, Integer, Integer>() {
 
             @Override
             public Integer apply(Integer i1, Integer i2) {
+                if(i2 == 0)
+                    throw new ArithmeticException("Whoops");
                 return i1 / i2;
             }
 

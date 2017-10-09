@@ -17,6 +17,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import co.touchlab.doppl.testing.DopplHacks;
+import co.touchlab.doppl.utils.PlatformUtils;
 import io.reactivex.*;
 import io.reactivex.exceptions.*;
 import io.reactivex.functions.*;
@@ -114,6 +116,8 @@ public class ParallelFilterTryTest implements Consumer<Object> {
         .filter(new Predicate<Integer>() {
             @Override
             public boolean test(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v > 0;
             }
         }, ParallelFailureHandling.ERROR)
@@ -129,6 +133,8 @@ public class ParallelFilterTryTest implements Consumer<Object> {
         .filter(new Predicate<Integer>() {
             @Override
             public boolean test(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v > 0;
             }
         }, ParallelFailureHandling.STOP)
@@ -148,6 +154,8 @@ public class ParallelFilterTryTest implements Consumer<Object> {
                 if (count++ == 1) {
                     return true;
                 }
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v > 0;
             }
         }, ParallelFailureHandling.RETRY)
@@ -163,6 +171,8 @@ public class ParallelFilterTryTest implements Consumer<Object> {
         .filter(new Predicate<Integer>() {
             @Override
             public boolean test(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v > 0;
             }
         }, new BiFunction<Long, Throwable, ParallelFailureHandling>() {
@@ -183,6 +193,8 @@ public class ParallelFilterTryTest implements Consumer<Object> {
         .filter(new Predicate<Integer>() {
             @Override
             public boolean test(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v > 0;
             }
         }, ParallelFailureHandling.SKIP)
@@ -199,6 +211,8 @@ public class ParallelFilterTryTest implements Consumer<Object> {
         .filter(new Predicate<Integer>() {
             @Override
             public boolean test(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v > 0;
             }
         }, new BiFunction<Long, Throwable, ParallelFailureHandling>() {
@@ -244,6 +258,8 @@ public class ParallelFilterTryTest implements Consumer<Object> {
         .filter(new Predicate<Integer>() {
             @Override
             public boolean test(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v > 0;
             }
         }, ParallelFailureHandling.ERROR)
@@ -260,6 +276,8 @@ public class ParallelFilterTryTest implements Consumer<Object> {
         .filter(new Predicate<Integer>() {
             @Override
             public boolean test(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v > 0;
             }
         }, ParallelFailureHandling.STOP)
@@ -280,6 +298,8 @@ public class ParallelFilterTryTest implements Consumer<Object> {
                 if (count++ == 1) {
                     return true;
                 }
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v > 0;
             }
         }, ParallelFailureHandling.RETRY)
@@ -296,6 +316,8 @@ public class ParallelFilterTryTest implements Consumer<Object> {
         .filter(new Predicate<Integer>() {
             @Override
             public boolean test(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v > 0;
             }
         }, new BiFunction<Long, Throwable, ParallelFailureHandling>() {
@@ -317,6 +339,8 @@ public class ParallelFilterTryTest implements Consumer<Object> {
         .filter(new Predicate<Integer>() {
             @Override
             public boolean test(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v > 0;
             }
         }, ParallelFailureHandling.SKIP)
@@ -334,6 +358,8 @@ public class ParallelFilterTryTest implements Consumer<Object> {
         .filter(new Predicate<Integer>() {
             @Override
             public boolean test(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 return 1 / v > 0;
             }
         }, new BiFunction<Long, Throwable, ParallelFailureHandling>() {

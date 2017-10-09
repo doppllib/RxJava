@@ -19,6 +19,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import co.touchlab.doppl.testing.DopplHacks;
+import co.touchlab.doppl.utils.PlatformUtils;
 import io.reactivex.*;
 import io.reactivex.exceptions.*;
 import io.reactivex.functions.*;
@@ -26,6 +28,7 @@ import io.reactivex.internal.functions.Functions;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.subscribers.TestSubscriber;
 
+@DopplHacks //Div by 0
 public class ParallelDoOnNextTryTest implements Consumer<Object> {
 
     volatile int calls;
@@ -95,12 +98,15 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
     }
 
     @Test
+    @DopplHacks //Div by 0
     public void doOnNextFailWithError() {
         Flowable.range(0, 2)
         .parallel(1)
         .doOnNext(new Consumer<Integer>() {
             @Override
             public void accept(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 if (1 / v < 0) {
                     System.out.println("Should not happen!");
                 }
@@ -118,6 +124,8 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
         .doOnNext(new Consumer<Integer>() {
             @Override
             public void accept(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 if (1 / v < 0) {
                     System.out.println("Should not happen!");
                 }
@@ -139,6 +147,8 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
                 if (count++ == 1) {
                     return;
                 }
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 if (1 / v < 0) {
                     System.out.println("Should not happen!");
                 }
@@ -156,6 +166,8 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
         .doOnNext(new Consumer<Integer>() {
             @Override
             public void accept(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 if (1 / v < 0) {
                     System.out.println("Should not happen!");
                 }
@@ -178,6 +190,8 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
         .doOnNext(new Consumer<Integer>() {
             @Override
             public void accept(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 if (1 / v < 0) {
                     System.out.println("Should not happen!");
                 }
@@ -196,6 +210,8 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
         .doOnNext(new Consumer<Integer>() {
             @Override
             public void accept(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 if (1 / v < 0) {
                     System.out.println("Should not happen!");
                 }
@@ -237,12 +253,15 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
     }
 
     @Test
+    @DopplHacks //Div by 0
     public void doOnNextFailWithErrorConditional() {
         Flowable.range(0, 2)
         .parallel(1)
         .doOnNext(new Consumer<Integer>() {
             @Override
             public void accept(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 if (1 / v < 0) {
                     System.out.println("Should not happen!");
                 }
@@ -255,12 +274,15 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
     }
 
     @Test
+    @DopplHacks //Div by 0
     public void doOnNextFailWithStopConditional() {
         Flowable.range(0, 2)
         .parallel(1)
         .doOnNext(new Consumer<Integer>() {
             @Override
             public void accept(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 if (1 / v < 0) {
                     System.out.println("Should not happen!");
                 }
@@ -274,6 +296,7 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
 
     @Test
     public void doOnNextFailWithRetryConditional() {
+
         Flowable.range(0, 2)
         .parallel(1)
         .doOnNext(new Consumer<Integer>() {
@@ -283,6 +306,8 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
                 if (count++ == 1) {
                     return;
                 }
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 if (1 / v < 0) {
                     System.out.println("Should not happen!");
                 }
@@ -301,6 +326,8 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
         .doOnNext(new Consumer<Integer>() {
             @Override
             public void accept(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 if (1 / v < 0) {
                     System.out.println("Should not happen!");
                 }
@@ -324,6 +351,8 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
         .doOnNext(new Consumer<Integer>() {
             @Override
             public void accept(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 if (1 / v < 0) {
                     System.out.println("Should not happen!");
                 }
@@ -343,6 +372,8 @@ public class ParallelDoOnNextTryTest implements Consumer<Object> {
         .doOnNext(new Consumer<Integer>() {
             @Override
             public void accept(Integer v) throws Exception {
+                if(v == 0)
+                    throw new ArithmeticException("Whoops!");
                 if (1 / v < 0) {
                     System.out.println("Should not happen!");
                 }

@@ -14,7 +14,7 @@
 package io.reactivex;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 
 import java.lang.reflect.*;
@@ -62,7 +62,7 @@ public enum TestHelper {
         Mockito.doAnswer(new Answer<Object>() {
             @Override
             public Object answer(InvocationOnMock a) throws Throwable {
-                Subscription s = a.getArgument(0);
+                Subscription s = (Subscription)a.getArguments()[0];
                 s.request(Long.MAX_VALUE);
                 return null;
             }

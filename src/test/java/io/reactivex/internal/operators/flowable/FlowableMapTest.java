@@ -14,7 +14,7 @@
 package io.reactivex.internal.operators.flowable;
 
 import static org.junit.Assert.assertNull;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 import java.io.IOException;
@@ -250,7 +250,8 @@ public class FlowableMapTest {
 
             @Override
             public Integer apply(Integer i) {
-                return i / 0;
+//                return i / 0;
+                throw new ArithmeticException("Whoops");
             }
 
         }).blockingGet();

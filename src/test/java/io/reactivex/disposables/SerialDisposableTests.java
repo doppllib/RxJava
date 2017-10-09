@@ -20,12 +20,9 @@ import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 import org.junit.*;
-import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import io.reactivex.internal.disposables.DisposableHelper;
 
-@RunWith(MockitoJUnitRunner.class)
 public class SerialDisposableTests {
     private SerialDisposable serialDisposable;
 

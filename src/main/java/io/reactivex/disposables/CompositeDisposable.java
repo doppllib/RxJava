@@ -231,4 +231,11 @@ public final class CompositeDisposable implements Disposable, DisposableContaine
             throw new CompositeException(errors);
         }
     }
+
+    @Override
+    protected void finalize() throws Throwable
+    {
+        dispose();
+        super.finalize();
+    }
 }
