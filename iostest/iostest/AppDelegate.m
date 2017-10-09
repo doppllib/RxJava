@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CoTouchlabDopplTestingDopplJunitTestHelper.h"
+#import "RxTestRunner.h"
 
 @interface AppDelegate ()
 
@@ -19,9 +20,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+//    [RxTestRunner runResourceWithNSString:@"InternalOperatorsMaybe.txt"];
+    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.maybe.MaybeSwitchIfEmptySingleTest#emptyCancelRace"];
+    
+    
 //    [CoTouchlabDopplTestingDopplJunitTestHelper runResourceWithNSString:@"tests0.txt"];
     
-    [CoTouchlabDopplTestingDopplJunitTestHelper runResourceWithNSString:@"InternalOperatorsFlowable.txt"];
+//    [CoTouchlabDopplTestingDopplJunitTestHelper runResourceWithNSString:@"InternalOperatorsFlowable.txt"];
     
 //    [CoTouchlabDopplTestingDopplJunitTestHelper runResourceWithNSString:@"TheRest2.txt"];
     
@@ -34,6 +39,8 @@
 //    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableAmbTest#onErrorRace"];
 //    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableRetryWithPredicateTest#retryDisposeRace"];
 //    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.processors.AsyncProcessorTest#testSubscribeCompletionRaceCondition"];
+    
+//    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableCreateTest"];
     
     return YES;
 }

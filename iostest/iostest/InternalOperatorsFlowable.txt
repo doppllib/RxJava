@@ -12,7 +12,7 @@ io.reactivex.internal.operators.flowable.FlowableAsObservableTest
 io.reactivex.internal.operators.flowable.FlowableAutoConnectTest
 io.reactivex.internal.operators.flowable.FlowableBlockingTest
 io.reactivex.internal.operators.flowable.FlowableBufferTest
-io.reactivex.internal.operators.flowable.FlowableCacheTest
+#io.reactivex.internal.operators.flowable.FlowableCacheTest
 io.reactivex.internal.operators.flowable.FlowableCastTest
 io.reactivex.internal.operators.flowable.FlowableCombineLatestTest
 io.reactivex.internal.operators.flowable.FlowableConcatDelayErrorTest
@@ -43,7 +43,7 @@ io.reactivex.internal.operators.flowable.FlowableFirstTest
 io.reactivex.internal.operators.flowable.FlowableFlatMapCompletableTest
 io.reactivex.internal.operators.flowable.FlowableFlatMapMaybeTest
 io.reactivex.internal.operators.flowable.FlowableFlatMapSingleTest
-io.reactivex.internal.operators.flowable.FlowableFlatMapTest
+#io.reactivex.internal.operators.flowable.FlowableFlatMapTest
 io.reactivex.internal.operators.flowable.FlowableFlattenIterableTest
 io.reactivex.internal.operators.flowable.FlowableForEachTest
 io.reactivex.internal.operators.flowable.FlowableFromArrayTest
@@ -86,7 +86,7 @@ io.reactivex.internal.operators.flowable.FlowableReduceTest
 io.reactivex.internal.operators.flowable.FlowableReduceWithSingleTest
 io.reactivex.internal.operators.flowable.FlowableRefCountTest
 io.reactivex.internal.operators.flowable.FlowableRepeatTest
-io.reactivex.internal.operators.flowable.FlowableReplayTest
+#io.reactivex.internal.operators.flowable.FlowableReplayTest
 io.reactivex.internal.operators.flowable.FlowableRetryTest
 io.reactivex.internal.operators.flowable.FlowableRetryWithPredicateTest
 io.reactivex.internal.operators.flowable.FlowableSampleTest

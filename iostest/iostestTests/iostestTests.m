@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "OneTest.h"
+#import "RxTestRunner.h"
 
 @interface iostestTests : XCTestCase
 
@@ -16,7 +16,7 @@
 @implementation iostestTests
 
 - (void)testExample {
-    XCTAssertEqual([OneTest runDopplWithInt:100 withInt:0], 0, "Junit tests failed");
+//    XCTAssertEqual([Rx runDopplWithInt:100 withInt:0], 0, "Junit tests failed");
 }
 
 @end

@@ -1,1 +1,3 @@
 io.reactivex.parallel.ParallelFlowableTest
+io.reactivex.internal.operators.flowable.FlowableCacheTest
+io.reactivex.internal.operators.flowable.FlowableFlatMapTest

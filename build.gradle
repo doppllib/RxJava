@@ -42,8 +42,8 @@ apply plugin: 'co.doppl.gradle'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 
-def javaCoreVersion = '0.8.4'
-def dopplCoreVersion = '0.8.4.0'
+def javaCoreVersion = '0.8.5'
+def dopplCoreVersion = '0.8.5.0'
 
 
 dependencies {
