@@ -73,7 +73,7 @@ import io.reactivex.internal.util.EndConsumerHelper;
  * </code></pre>
  */
 public abstract class DefaultSubscriber<T> implements FlowableSubscriber<T> {
-    private Subscription s;
+    private volatile Subscription s;
     @Override
     public final void onSubscribe(Subscription s) {
         if (EndConsumerHelper.validate(this.s, s, getClass())) {

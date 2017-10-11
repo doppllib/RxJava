@@ -12,6 +12,8 @@
  */
 package io.reactivex.internal.operators.observable;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
 import io.reactivex.*;
 import io.reactivex.annotations.Nullable;
 import io.reactivex.internal.observers.BasicIntQueueDisposable;
@@ -60,7 +62,7 @@ public final class ObservableRange extends Observable<Integer> {
             }
             Observer<? super Integer> actual = this.actual;
             long e = end;
-            for (long i = index; i != e && get() == 0; i++) {
+            for (@AutoreleasePool long i = index; i != e && get() == 0; i++) {
                 actual.onNext((int)i);
             }
             if (get() == 0) {

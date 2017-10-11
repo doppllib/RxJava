@@ -53,7 +53,7 @@ public final class FlowableElementAtSingle<T> extends Single<T> implements FuseT
         final long index;
         final T defaultValue;
 
-        Subscription s;
+        volatile Subscription s;
 
         long count;
 

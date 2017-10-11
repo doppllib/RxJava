@@ -1,0 +1,11 @@
+#Stack overflow in dealloc
+io.reactivex.processors.ReplayProcessorBoundedConcurrencyTest
+io.reactivex.subjects.ReplaySubjectBoundedConcurrencyTest
+
+#These next 2 are *probably* related to mock objects having questionable threading issues
+io.reactivex.internal.operators.flowable.FlowableConcatTest
+io.reactivex.internal.operators.observable.ObservableConcatTest
+
+#Bad access? Happened once
+io.reactivex.internal.operators.flowable.FlowableScanTest#testScanShouldNotRequestZero
+io.reactivex.subscribers.SerializedSubscriberTest#runConcurrencyTest

@@ -1,3 +1,12 @@
 io.reactivex.parallel.ParallelFlowableTest
 io.reactivex.internal.operators.flowable.FlowableCacheTest
 io.reactivex.internal.operators.flowable.FlowableFlatMapTest
+io.reactivex.internal.operators.flowable.FlowablePublishTest
+io.reactivex.internal.operators.observable.ObservableFlatMapTest
+#io.reactivex.internal.operators.observable.ObservableRetryTest
+#io.reactivex.processors.ReplayProcessorConcurrencyTest
+#io.reactivex.subjects.ReplaySubjectConcurrencyTest
+io.reactivex.internal.operators.observable.ObservableMergeMaxConcurrentTest
+#io.reactivex.internal.operators.observable.ObservableMergeTest
+io.reactivex.internal.operators.observable.ObservableReplayTest
+#io.reactivex.internal.operators.flowable.FlowableReplayTest

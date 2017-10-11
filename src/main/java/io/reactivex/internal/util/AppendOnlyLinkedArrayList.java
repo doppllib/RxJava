@@ -29,6 +29,20 @@ public class AppendOnlyLinkedArrayList<T> {
     Object[] tail;
     int offset;
 
+    @Override
+    protected void finalize() throws Throwable
+    {
+        final int c = capacity;
+        Object[] me = head;
+        while(me != null)
+        {
+            Object[] next = (Object[])me[c];
+            me[c] = null;
+            me = next;
+        }
+        super.finalize();
+    }
+
     /**
      * Constructs an empty list with a per-link capacity.
      * @param capacity the capacity of each link

@@ -108,7 +108,7 @@ public final class MaybeUsing<T, D> extends Maybe<T> {
 
         final boolean eager;
 
-        Disposable d;
+        volatile Disposable d;
 
         UsingObserver(MaybeObserver<? super T> actual, D resource, Consumer<? super D> disposer, boolean eager) {
             super(resource);

@@ -13,6 +13,9 @@
 
 package io.reactivex.parallel;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
+
 import static org.junit.Assert.*;
 
 import java.io.IOException;
@@ -35,9 +38,10 @@ import io.reactivex.subscribers.TestSubscriber;
 public class ParallelFlowableTest {
 
     @Test
+    @AutoreleasePool
     public void sequentialMode() {
         Flowable<Integer> source = Flowable.range(1, 1000000).hide();
-        for (int i = 1; i < 33; i++) {
+        for (@AutoreleasePool int i = 1; i < 33; i++) {
             Flowable<Integer> result = ParallelFlowable.from(source, i)
             .map(new Function<Integer, Integer>() {
                 @Override
@@ -65,7 +69,7 @@ public class ParallelFlowableTest {
     @Test
     public void sequentialModeFused() {
         Flowable<Integer> source = Flowable.range(1, 1000000);
-        for (int i = 1; i < 33; i++) {
+        for (@AutoreleasePool int i = 1; i < 33; i++) {
             Flowable<Integer> result = ParallelFlowable.from(source, i)
             .map(new Function<Integer, Integer>() {
                 @Override
@@ -94,7 +98,7 @@ public class ParallelFlowableTest {
     public void parallelMode() {
         Flowable<Integer> source = Flowable.range(1, 1000000).hide();
         int ncpu = Math.max(8, Runtime.getRuntime().availableProcessors());
-        for (int i = 1; i < ncpu + 1; i++) {
+        for (@AutoreleasePool int i = 1; i < ncpu + 1; i++) {
 
             ExecutorService exec = Executors.newFixedThreadPool(i);
 
@@ -135,7 +139,7 @@ public class ParallelFlowableTest {
     public void parallelModeFused() {
         Flowable<Integer> source = Flowable.range(1, 1000000);
         int ncpu = Math.max(8, Runtime.getRuntime().availableProcessors());
-        for (int i = 1; i < ncpu + 1; i++) {
+        for (@AutoreleasePool int i = 1; i < ncpu + 1; i++) {
 
             ExecutorService exec = Executors.newFixedThreadPool(i);
 
@@ -194,7 +198,7 @@ public class ParallelFlowableTest {
     @Test
     public void parallelReduceFull() {
         int m = 100000;
-        for (int n = 1; n <= m; n *= 10) {
+        for (@AutoreleasePool int n = 1; n <= m; n *= 10) {
 //            System.out.println(n);
             for (int i = 1; i <= Runtime.getRuntime().availableProcessors(); i++) {
 //                System.out.println("  " + i);
@@ -718,7 +722,7 @@ public class ParallelFlowableTest {
     @Test
     public void parallelismAndPrefetch() {
         for (int parallelism = 1; parallelism <= 8; parallelism++) {
-            for (int prefetch = 1; prefetch <= 1024; prefetch *= 2) {
+            for (@AutoreleasePool int prefetch = 1; prefetch <= 1024; prefetch *= 2) {
                 Flowable.range(1, 1024 * 1024)
                 .parallel(parallelism, prefetch)
                 .map(Functions.<Integer>identity())
@@ -735,7 +739,7 @@ public class ParallelFlowableTest {
     @Test
     public void parallelismAndPrefetchAsync() {
         for (int parallelism = 1; parallelism <= 8; parallelism *= 2) {
-            for (int prefetch = 1; prefetch <= 1024; prefetch *= 2) {
+            for (@AutoreleasePool int prefetch = 1; prefetch <= 1024; prefetch *= 2) {
                 System.out.println("parallelismAndPrefetchAsync >> " + parallelism + ", " + prefetch);
 
                 Flowable.range(1, 1024 * 1024)

@@ -1,5 +1,5 @@
 io.reactivex.internal.queue.SimpleQueueTest
-io.reactivex.internal.schedulers.AbstractDirectTaskTest
+#io.reactivex.internal.schedulers.AbstractDirectTaskTest
 io.reactivex.internal.schedulers.ComputationSchedulerInternalTest
 io.reactivex.internal.schedulers.DisposeOnCancelTest
 io.reactivex.internal.schedulers.ImmediateThinSchedulerTest

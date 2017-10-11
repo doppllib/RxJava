@@ -13,6 +13,9 @@
 
 package io.reactivex.internal.operators.observable;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
+
 import static org.junit.Assert.*;
 
 import java.util.*;
@@ -40,7 +43,7 @@ public class ObservableMergeMaxConcurrentTest {
 
     @Test
     public void testWhenMaxConcurrentIsOne() {
-        for (int i = 0; i < 100; i++) {
+        for (@AutoreleasePool int i = 0; i < 100; i++) {
             List<Observable<String>> os = new ArrayList<Observable<String>>();
             os.add(Observable.just("one", "two", "three", "four", "five").subscribeOn(Schedulers.newThread()));
             os.add(Observable.just("one", "two", "three", "four", "five").subscribeOn(Schedulers.newThread()));
@@ -58,7 +61,7 @@ public class ObservableMergeMaxConcurrentTest {
 
     @Test
     public void testMaxConcurrent() {
-        for (int times = 0; times < 100; times++) {
+        for (@AutoreleasePool int times = 0; times < 100; times++) {
             int observableCount = 100;
             // Test maxConcurrent from 2 to 12
             int maxConcurrent = 2 + (times % 10);
@@ -155,7 +158,7 @@ public class ObservableMergeMaxConcurrentTest {
 
     @Test
     public void testSimple() {
-        for (int i = 1; i < 100; i++) {
+        for (@AutoreleasePool int i = 1; i < 100; i++) {
             TestObserver<Integer> ts = new TestObserver<Integer>();
             List<Observable<Integer>> sourceList = new ArrayList<Observable<Integer>>(i);
             List<Integer> result = new ArrayList<Integer>(i);
@@ -173,7 +176,7 @@ public class ObservableMergeMaxConcurrentTest {
     }
     @Test
     public void testSimpleOneLess() {
-        for (int i = 2; i < 100; i++) {
+        for (@AutoreleasePool int i = 2; i < 100; i++) {
             TestObserver<Integer> ts = new TestObserver<Integer>();
             List<Observable<Integer>> sourceList = new ArrayList<Observable<Integer>>(i);
             List<Integer> result = new ArrayList<Integer>(i);
@@ -193,7 +196,7 @@ public class ObservableMergeMaxConcurrentTest {
     public void testSimpleAsyncLoop() {
         IoScheduler ios = (IoScheduler)Schedulers.io();
         int c = ios.size();
-        for (int i = 0; i < 200; i++) {
+        for (@AutoreleasePool int i = 0; i < 200; i++) {
             testSimpleAsync();
             int c1 = ios.size();
             if (c + 60 < c1) {
@@ -203,7 +206,7 @@ public class ObservableMergeMaxConcurrentTest {
     }
     @Test(timeout = 30000)
     public void testSimpleAsync() {
-        for (int i = 1; i < 50; i++) {
+        for (@AutoreleasePool int i = 1; i < 50; i++) {
             TestObserver<Integer> ts = new TestObserver<Integer>();
             List<Observable<Integer>> sourceList = new ArrayList<Observable<Integer>>(i);
             Set<Integer> expected = new HashSet<Integer>(i);
@@ -223,14 +226,14 @@ public class ObservableMergeMaxConcurrentTest {
     }
     @Test(timeout = 30000)
     public void testSimpleOneLessAsyncLoop() {
-        for (int i = 0; i < 200; i++) {
+        for (@AutoreleasePool int i = 0; i < 200; i++) {
             testSimpleOneLessAsync();
         }
     }
     @Test(timeout = 30000)
     public void testSimpleOneLessAsync() {
         long t = System.currentTimeMillis();
-        for (int i = 2; i < 50; i++) {
+        for (@AutoreleasePool int i = 2; i < 50; i++) {
             if (System.currentTimeMillis() - t > TimeUnit.SECONDS.toMillis(9)) {
                 break;
             }

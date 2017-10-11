@@ -26,6 +26,7 @@ import org.junit.*;
 import org.mockito.InOrder;
 import org.reactivestreams.*;
 
+import co.touchlab.doppl.testing.DopplHacks;
 import io.reactivex.*;
 import io.reactivex.exceptions.*;
 import io.reactivex.functions.*;
@@ -548,11 +549,14 @@ public class FlowableZipTest {
         };
     }
 
+    @DopplHacks //Div by 0
     private BiFunction<Integer, Integer, Integer> getDivideZipr() {
         BiFunction<Integer, Integer, Integer> zipr = new BiFunction<Integer, Integer, Integer>() {
 
             @Override
             public Integer apply(Integer i1, Integer i2) {
+                if(i2 == 0)
+                    throw new ArithmeticException("Whoops!");
                 return i1 / i2;
             }
 

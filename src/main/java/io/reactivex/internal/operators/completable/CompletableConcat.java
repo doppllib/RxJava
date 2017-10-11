@@ -61,7 +61,7 @@ public final class CompletableConcat extends Completable {
 
         SimpleQueue<CompletableSource> queue;
 
-        Subscription s;
+        volatile Subscription s;
 
         volatile boolean done;
 

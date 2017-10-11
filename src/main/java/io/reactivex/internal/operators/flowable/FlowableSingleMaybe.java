@@ -44,7 +44,7 @@ public final class FlowableSingleMaybe<T> extends Maybe<T> implements FuseToFlow
 
         final MaybeObserver<? super T> actual;
 
-        Subscription s;
+        volatile Subscription s;
 
         boolean done;
 

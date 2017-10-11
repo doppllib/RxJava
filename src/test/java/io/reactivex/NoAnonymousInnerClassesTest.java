@@ -19,10 +19,16 @@ import java.util.*;
 
 import org.junit.Test;
 
+import co.touchlab.doppl.testing.DopplHacks;
+import co.touchlab.doppl.utils.PlatformUtils;
+
 public class NoAnonymousInnerClassesTest {
 
     @Test
+    @DopplHacks //Meh
     public void verify() throws Exception {
+        if(PlatformUtils.isJ2objc())
+            return;
         URL u = NoAnonymousInnerClassesTest.class.getResource("/");
         File f = new File(u.toURI());
 

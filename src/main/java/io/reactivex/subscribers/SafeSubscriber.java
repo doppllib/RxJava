@@ -29,7 +29,7 @@ public final class SafeSubscriber<T> implements FlowableSubscriber<T>, Subscript
     /** The actual Subscriber. */
     final Subscriber<? super T> actual;
     /** The subscription. */
-    Subscription s;
+    volatile Subscription s;
     /** Indicates a terminal state. */
     boolean done;
 

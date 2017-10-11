@@ -13,6 +13,9 @@
 
 package io.reactivex.internal.operators.flowable;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
+
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
@@ -24,6 +27,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.*;
 import org.reactivestreams.*;
 
+import co.touchlab.doppl.testing.DopplHacks;
 import io.reactivex.*;
 import io.reactivex.exceptions.*;
 import io.reactivex.functions.*;
@@ -383,7 +387,7 @@ public class FlowableFlatMapTest {
 
     @Test
     public void testFlatMapTransformsMaxConcurrentNormalLoop() {
-        for (int i = 0; i < 1000; i++) {
+        for (@AutoreleasePool int i = 0; i < 1000; i++) {
             if (i % 100 == 0) {
                 System.out.println("testFlatMapTransformsMaxConcurrentNormalLoop => " + i);
             }
@@ -436,7 +440,7 @@ public class FlowableFlatMapTest {
     @Ignore("Don't care for any reordering")
     @Test(timeout = 10000)
     public void flatMapRangeAsyncLoop() {
-        for (int i = 0; i < 2000; i++) {
+        for (@AutoreleasePool int i = 0; i < 2000; i++) {
             if (i % 10 == 0) {
                 System.out.println("flatMapRangeAsyncLoop > " + i);
             }
@@ -473,7 +477,7 @@ public class FlowableFlatMapTest {
     }
     @Test(timeout = 30000)
     public void flatMapRangeMixedAsyncLoop() {
-        for (int i = 0; i < 2000; i++) {
+        for (@AutoreleasePool int i = 0; i < 2000; i++) {
             if (i % 10 == 0) {
                 System.out.println("flatMapRangeAsyncLoop > " + i);
             }
@@ -513,8 +517,9 @@ public class FlowableFlatMapTest {
     }
 
     @Test
+    @DopplHacks //Until we fix memory
     public void flatMapIntPassthruAsync() {
-        for (int i = 0;i < 1000; i++) {
+        for (@AutoreleasePool int i = 0;i < 20; i++) {
             TestSubscriber<Integer> ts = new TestSubscriber<Integer>();
 
             Flowable.range(1, 1000).flatMap(new Function<Integer, Flowable<Integer>>() {
@@ -528,11 +533,12 @@ public class FlowableFlatMapTest {
             ts.assertNoErrors();
             ts.assertComplete();
             ts.assertValueCount(1000);
+            ts.cancel();
         }
     }
     @Test
     public void flatMapTwoNestedSync() {
-        for (final int n : new int[] { 1, 1000, 1000000 }) {
+        for (@AutoreleasePool final int n : new int[] { 1, 1000, 1000000 }) {
             TestSubscriber<Integer> ts = new TestSubscriber<Integer>();
 
             Flowable.just(1, 2).flatMap(new Function<Integer, Flowable<Integer>>() {
@@ -826,7 +832,7 @@ public class FlowableFlatMapTest {
 
     @Test
     public void innerCompleteCancelRace() {
-        for (int i = 0; i < 500; i++) {
+        for (@AutoreleasePool int i = 0; i < 500; i++) {
             final PublishProcessor<Integer> ps = PublishProcessor.create();
 
             final TestSubscriber<Integer> to = Flowable.merge(Flowable.just(ps)).test();
@@ -902,7 +908,7 @@ public class FlowableFlatMapTest {
 
     @Test
     public void noCrossBoundaryFusion() {
-        for (int i = 0; i < 500; i++) {
+        for (@AutoreleasePool int i = 0; i < 500; i++) {
             TestSubscriber<Object> ts = Flowable.merge(
                     Flowable.just(1).observeOn(Schedulers.single()).map(new Function<Integer, Object>() {
                         @Override
@@ -930,7 +936,7 @@ public class FlowableFlatMapTest {
 
     @Test
     public void cancelScalarDrainRace() {
-        for (int i = 0; i < 1000; i++) {
+        for (@AutoreleasePool int i = 0; i < 1000; i++) {
             List<Throwable> errors = TestHelper.trackPluginErrors();
             try {
 
@@ -962,7 +968,7 @@ public class FlowableFlatMapTest {
 
     @Test
     public void cancelDrainRace() {
-        for (int i = 0; i < 1000; i++) {
+        for (@AutoreleasePool int i = 0; i < 1000; i++) {
             for (int j = 1; j < 50; j += 5) {
                 List<Throwable> errors = TestHelper.trackPluginErrors();
                 try {

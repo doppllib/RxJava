@@ -176,7 +176,7 @@ implements Observer<T>, Disposable, MaybeObserver<T>, SingleObserver<T>, Complet
             actual.onError(t);
         } finally {
             done.countDown();
-            j2ojbcCleanUp();
+//            j2ojbcCleanUp();
         }
     }
 
@@ -196,7 +196,7 @@ implements Observer<T>, Disposable, MaybeObserver<T>, SingleObserver<T>, Complet
             actual.onComplete();
         } finally {
             done.countDown();
-            j2ojbcCleanUp();
+//            j2ojbcCleanUp();
         }
     }
 

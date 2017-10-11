@@ -48,7 +48,7 @@ public final class FlowableReduce<T> extends AbstractFlowableWithUpstream<T, T> 
 
         final BiFunction<T, T, T> reducer;
 
-        Subscription s;
+        volatile Subscription s;
 
         ReduceSubscriber(Subscriber<? super T> actual, BiFunction<T, T, T> reducer) {
             super(actual);

@@ -42,7 +42,7 @@ public final class ObservableLastMaybe<T> extends Maybe<T> {
 
         final MaybeObserver<? super T> actual;
 
-        Disposable s;
+        volatile Disposable s;
 
         T item;
 

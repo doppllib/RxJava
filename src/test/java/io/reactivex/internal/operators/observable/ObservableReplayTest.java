@@ -13,6 +13,9 @@
 
 package io.reactivex.internal.operators.observable;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
+
 import static org.junit.Assert.*;
 
 import static org.mockito.Mockito.*;
@@ -24,6 +27,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.*;
 import org.mockito.InOrder;
 
+import co.touchlab.doppl.testing.MockGen;
 import io.reactivex.*;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
@@ -41,6 +45,7 @@ import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.*;
 import io.reactivex.subjects.PublishSubject;
 
+@MockGen(classes = "io.reactivex.internal.operators.observable.ObservableReplayTest.InprocessWorker")
 public class ObservableReplayTest {
     @Test
     public void testBufferedReplay() {
@@ -965,7 +970,7 @@ public class ObservableReplayTest {
     @Test
     public void testAsync() {
         Observable<Integer> source = Observable.range(1, 10000);
-        for (int i = 0; i < 100; i++) {
+        for (@AutoreleasePool int i = 0; i < 100; i++) {
             TestObserver<Integer> ts1 = new TestObserver<Integer>();
 
             Observable<Integer> cached = source.replay().autoConnect();
@@ -996,18 +1001,18 @@ public class ObservableReplayTest {
         Observable<Long> output = cached.observeOn(Schedulers.computation());
 
         List<TestObserver<Long>> list = new ArrayList<TestObserver<Long>>(100);
-        for (int i = 0; i < 100; i++) {
+        for (@AutoreleasePool int i = 0; i < 100; i++) {
             TestObserver<Long> ts = new TestObserver<Long>();
             list.add(ts);
             output.skip(i * 10).take(10).subscribe(ts);
         }
 
         List<Long> expected = new ArrayList<Long>();
-        for (int i = 0; i < 10; i++) {
+        for (@AutoreleasePool int i = 0; i < 10; i++) {
             expected.add((long)(i - 10));
         }
         int j = 0;
-        for (TestObserver<Long> ts : list) {
+        for (@AutoreleasePool TestObserver<Long> ts : list) {
             ts.awaitTerminalEvent(3, TimeUnit.SECONDS);
             ts.assertNoErrors();
             ts.assertTerminated();

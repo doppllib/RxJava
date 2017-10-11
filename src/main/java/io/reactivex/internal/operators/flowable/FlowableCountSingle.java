@@ -43,7 +43,7 @@ public final class FlowableCountSingle<T> extends Single<Long> implements FuseTo
 
         final SingleObserver<? super Long> actual;
 
-        Subscription s;
+        volatile Subscription s;
 
         long count;
 

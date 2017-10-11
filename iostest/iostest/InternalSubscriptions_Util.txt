@@ -1,7 +1,7 @@
 io.reactivex.internal.SubscribeWithTest
 io.reactivex.internal.subscriptions.ArrayCompositeSubscriptionTest
 io.reactivex.internal.subscriptions.AsyncSubscriptionTest
-io.reactivex.internal.subscriptions.DeferredScalarSubscriptionTest
+#io.reactivex.internal.subscriptions.DeferredScalarSubscriptionTest
 io.reactivex.internal.subscriptions.FullArbiterTest
 io.reactivex.internal.subscriptions.QueueSubscriptionTest
 io.reactivex.internal.subscriptions.ScalarSubscriptionTest

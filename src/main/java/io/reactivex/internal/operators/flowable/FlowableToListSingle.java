@@ -67,7 +67,7 @@ public final class FlowableToListSingle<T, U extends Collection<? super T>> exte
 
         final SingleObserver<? super U> actual;
 
-        Subscription s;
+        volatile Subscription s;
 
         U value;
 

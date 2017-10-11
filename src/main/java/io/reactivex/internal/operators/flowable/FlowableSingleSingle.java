@@ -51,7 +51,7 @@ public final class FlowableSingleSingle<T> extends Single<T> implements FuseToFl
 
         final T defaultValue;
 
-        Subscription s;
+        volatile Subscription s;
 
         boolean done;
 

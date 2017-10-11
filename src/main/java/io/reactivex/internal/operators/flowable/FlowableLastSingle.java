@@ -51,7 +51,7 @@ public final class FlowableLastSingle<T> extends Single<T> {
 
         final T defaultItem;
 
-        Subscription s;
+        volatile Subscription s;
 
         T item;
 

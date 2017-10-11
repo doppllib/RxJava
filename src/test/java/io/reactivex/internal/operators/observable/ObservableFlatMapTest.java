@@ -13,6 +13,9 @@
 
 package io.reactivex.internal.operators.observable;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
+
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
@@ -385,7 +388,7 @@ public class ObservableFlatMapTest {
 
     @Test
     public void testFlatMapTransformsMaxConcurrentNormalLoop() {
-        for (int i = 0; i < 1000; i++) {
+        for (@AutoreleasePool int i = 0; i < 1000; i++) {
             if (i % 100 == 0) {
                 System.out.println("testFlatMapTransformsMaxConcurrentNormalLoop => " + i);
             }
@@ -436,7 +439,7 @@ public class ObservableFlatMapTest {
     @Ignore("Don't care for any reordering")
     @Test(timeout = 10000)
     public void flatMapRangeAsyncLoop() {
-        for (int i = 0; i < 2000; i++) {
+        for (@AutoreleasePool int i = 0; i < 2000; i++) {
             if (i % 10 == 0) {
                 System.out.println("flatMapRangeAsyncLoop > " + i);
             }
@@ -473,7 +476,7 @@ public class ObservableFlatMapTest {
     }
     @Test(timeout = 30000)
     public void flatMapRangeMixedAsyncLoop() {
-        for (int i = 0; i < 2000; i++) {
+        for (@AutoreleasePool int i = 0; i < 2000; i++) {
             if (i % 10 == 0) {
                 System.out.println("flatMapRangeAsyncLoop > " + i);
             }
@@ -514,7 +517,7 @@ public class ObservableFlatMapTest {
 
     @Test
     public void flatMapIntPassthruAsync() {
-        for (int i = 0;i < 1000; i++) {
+        for (@AutoreleasePool int i = 0;i < 1000; i++) {
             TestObserver<Integer> ts = new TestObserver<Integer>();
 
             Observable.range(1, 1000).flatMap(new Function<Integer, Observable<Integer>>() {
@@ -532,7 +535,7 @@ public class ObservableFlatMapTest {
     }
     @Test
     public void flatMapTwoNestedSync() {
-        for (final int n : new int[] { 1, 1000, 1000000 }) {
+        for (@AutoreleasePool final int n : new int[] { 1, 1000, 1000000 }) {
             TestObserver<Integer> ts = new TestObserver<Integer>();
 
             Observable.just(1, 2).flatMap(new Function<Integer, Observable<Integer>>() {
@@ -694,7 +697,7 @@ public class ObservableFlatMapTest {
 
     @Test
     public void innerCompleteCancelRace() {
-        for (int i = 0; i < 500; i++) {
+        for (@AutoreleasePool int i = 0; i < 500; i++) {
             final PublishSubject<Integer> ps = PublishSubject.create();
 
             final TestObserver<Integer> to = Observable.merge(Observable.just(ps)).test();
@@ -761,7 +764,7 @@ public class ObservableFlatMapTest {
 
     @Test
     public void noCrossBoundaryFusion() {
-        for (int i = 0; i < 500; i++) {
+        for (@AutoreleasePool int i = 0; i < 500; i++) {
             TestObserver<Object> ts = Observable.merge(
                     Observable.just(1).observeOn(Schedulers.single()).map(new Function<Integer, Object>() {
                         @Override
@@ -789,7 +792,7 @@ public class ObservableFlatMapTest {
 
     @Test
     public void cancelScalarDrainRace() {
-        for (int i = 0; i < 1000; i++) {
+        for (@AutoreleasePool int i = 0; i < 1000; i++) {
             List<Throwable> errors = TestHelper.trackPluginErrors();
             try {
 
@@ -821,7 +824,7 @@ public class ObservableFlatMapTest {
 
     @Test
     public void cancelDrainRace() {
-        for (int i = 0; i < 1000; i++) {
+        for (@AutoreleasePool int i = 0; i < 1000; i++) {
             for (int j = 1; j < 50; j += 5) {
                 List<Throwable> errors = TestHelper.trackPluginErrors();
                 try {

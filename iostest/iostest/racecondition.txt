@@ -1,4 +1,3 @@
-io.reactivex.internal.operators.flowable.FlowableReplayTest
 io.reactivex.internal.operators.completable.CompletableConcatTest
 io.reactivex.internal.operators.completable.CompletableAmbTest
 io.reactivex.internal.operators.completable.CompletableMergeTest
@@ -9,3 +8,4 @@ io.reactivex.internal.operators.maybe.MaybeTakeUntilPublisherTest
 io.reactivex.internal.operators.maybe.MaybeSwitchIfEmptyTest
 io.reactivex.internal.operators.maybe.MaybeTakeUntilTest
 io.reactivex.internal.operators.maybe.MaybeTimeoutPublisherTest
+#io.reactivex.internal.operators.flowable.FlowableReplayTest

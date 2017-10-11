@@ -42,7 +42,7 @@ public final class FlowableIgnoreElementsCompletable<T> extends Completable impl
     static final class IgnoreElementsSubscriber<T> implements FlowableSubscriber<T>, Disposable {
         final CompletableObserver actual;
 
-        Subscription s;
+        volatile Subscription s;
 
         IgnoreElementsSubscriber(CompletableObserver actual) {
             this.actual = actual;

@@ -60,10 +60,10 @@ public class TestSubscriberTest {
         // FIXME different message pattern
         // thrown.expectMessage("Number of items does not match. Provided: 1  Actual: 2");
 
-        o.assertValues(1);
         o.assertValueCount(2);
         try
         {
+            o.assertValues(1);
             o.assertTerminated();
             fail("Didn't throw");
         }
@@ -1888,8 +1888,13 @@ public class TestSubscriberTest {
 
             fail("Should have thrown!");
         } catch (AssertionError ex) {
-            System.out.println(ex.toString());
-            assertTrue(ex.toString(), ex.toString().contains("timeout!"));
+            String main = ex.getMessage();
+            Throwable cause = ex.getCause();
+            String causeMessage = "";
+            if(cause != null && cause.getMessage() != null)
+                causeMessage = cause.getMessage();
+            assertTrue(main.contains("timeout!") || causeMessage.contains("timeout!"));
+//            assertTrue(ex.toString(), ex.toString().contains("timeout!"));
         }
     }
 
@@ -1981,9 +1986,9 @@ public class TestSubscriberTest {
             ts
             .awaitCount(1, TestWaitStrategy.SLEEP_1MS, 50);
         }
-        catch(Exception e)
+        catch(Throwable e)
         {
-
+            assertTrue(e instanceof AssertionError);
         }
 
         assertTrue(ts.isTimeout());

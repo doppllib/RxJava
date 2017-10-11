@@ -13,6 +13,9 @@
 
 package io.reactivex.internal.operators.flowable;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
+
 import static org.junit.Assert.*;
 
 import java.util.*;
@@ -402,7 +405,7 @@ public class FlowablePublishTest {
     public void syncFusedObserveOn() {
         ConnectableFlowable<Integer> co = Flowable.range(0, 1000).publish();
         Flowable<Integer> obs = co.observeOn(Schedulers.computation());
-        for (int i = 0; i < 1000; i++) {
+        for (@AutoreleasePool int i = 0; i < 1000; i++) {
             for (int j = 1; j < 6; j++) {
                 List<TestSubscriber<Integer>> tss = new ArrayList<TestSubscriber<Integer>>();
                 for (int k = 1; k < j; k++) {
@@ -429,7 +432,7 @@ public class FlowablePublishTest {
     public void syncFusedObserveOn2() {
         ConnectableFlowable<Integer> co = Flowable.range(0, 1000).publish();
         Flowable<Integer> obs = co.observeOn(ImmediateThinScheduler.INSTANCE);
-        for (int i = 0; i < 1000; i++) {
+        for (@AutoreleasePool int i = 0; i < 1000; i++) {
             for (int j = 1; j < 6; j++) {
                 List<TestSubscriber<Integer>> tss = new ArrayList<TestSubscriber<Integer>>();
                 for (int k = 1; k < j; k++) {
@@ -455,7 +458,7 @@ public class FlowablePublishTest {
     @Test
     public void asyncFusedObserveOn() {
         ConnectableFlowable<Integer> co = Flowable.range(0, 1000).observeOn(ImmediateThinScheduler.INSTANCE).publish();
-        for (int i = 0; i < 1000; i++) {
+        for (@AutoreleasePool int i = 0; i < 1000; i++) {
             for (int j = 1; j < 6; j++) {
                 List<TestSubscriber<Integer>> tss = new ArrayList<TestSubscriber<Integer>>();
                 for (int k = 1; k < j; k++) {
@@ -482,7 +485,7 @@ public class FlowablePublishTest {
     public void testObserveOn() {
         ConnectableFlowable<Integer> co = Flowable.range(0, 1000).hide().publish();
         Flowable<Integer> obs = co.observeOn(Schedulers.computation());
-        for (int i = 0; i < 1000; i++) {
+        for (@AutoreleasePool int i = 0; i < 1000; i++) {
             for (int j = 1; j < 6; j++) {
                 List<TestSubscriber<Integer>> tss = new ArrayList<TestSubscriber<Integer>>();
                 for (int k = 1; k < j; k++) {
@@ -529,7 +532,7 @@ public class FlowablePublishTest {
 
     @Test
     public void addRemoveRace() {
-        for (int i = 0; i < 500; i++) {
+        for (@AutoreleasePool int i = 0; i < 500; i++) {
 
             final ConnectableFlowable<Integer> co = Flowable.<Integer>empty().publish();
 
@@ -618,7 +621,7 @@ public class FlowablePublishTest {
 
     @Test
     public void nextCancelRace() {
-        for (int i = 0; i < 500; i++) {
+        for (@AutoreleasePool int i = 0; i < 500; i++) {
 
             final PublishProcessor<Integer> ps = PublishProcessor.create();
 
@@ -686,7 +689,7 @@ public class FlowablePublishTest {
 
     @Test
     public void subscribeDisconnectRace() {
-        for (int i = 0; i < 500; i++) {
+        for (@AutoreleasePool int i = 0; i < 500; i++) {
 
             final PublishProcessor<Integer> ps = PublishProcessor.create();
 
@@ -768,7 +771,7 @@ public class FlowablePublishTest {
 
     @Test
     public void preNextConnect() {
-        for (int i = 0; i < 500; i++) {
+        for (@AutoreleasePool int i = 0; i < 500; i++) {
 
             final ConnectableFlowable<Integer> co = Flowable.<Integer>empty().publish();
 
@@ -787,7 +790,7 @@ public class FlowablePublishTest {
 
     @Test
     public void connectRace() {
-        for (int i = 0; i < 500; i++) {
+        for (@AutoreleasePool int i = 0; i < 500; i++) {
 
             final ConnectableFlowable<Integer> co = Flowable.<Integer>empty().publish();
 

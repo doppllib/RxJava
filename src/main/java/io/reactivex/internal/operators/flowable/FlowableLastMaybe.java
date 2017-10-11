@@ -43,7 +43,7 @@ public final class FlowableLastMaybe<T> extends Maybe<T> {
 
         final MaybeObserver<? super T> actual;
 
-        Subscription s;
+        volatile Subscription s;
 
         T item;
 

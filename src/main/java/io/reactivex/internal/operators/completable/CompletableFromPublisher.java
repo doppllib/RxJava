@@ -36,7 +36,7 @@ public final class CompletableFromPublisher<T> extends Completable {
 
         final CompletableObserver cs;
 
-        Subscription s;
+        volatile Subscription s;
 
         FromPublisherSubscriber(CompletableObserver actual) {
             this.cs = actual;

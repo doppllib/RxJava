@@ -24,12 +24,14 @@ import org.junit.Test;
 import org.mockito.InOrder;
 import org.reactivestreams.*;
 
+import co.touchlab.doppl.testing.MockGen;
 import io.reactivex.*;
 import io.reactivex.Flowable;
 import io.reactivex.functions.*;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.subscribers.DefaultSubscriber;
 
+@MockGen(classes = "io.reactivex.internal.operators.flowable.FlowableSingleTest.IntegerDefaultSubscriber")
 public class FlowableSingleTest {
 
     @Test
@@ -362,28 +364,7 @@ public class FlowableSingleTest {
     public void testSingleWithBackpressureFlowable() {
         Flowable<Integer> observable = Flowable.just(1, 2).singleElement().toFlowable();
 
-        Subscriber<Integer> subscriber = spy(new DefaultSubscriber<Integer>() {
-
-            @Override
-            public void onStart() {
-                request(1);
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(Integer integer) {
-                request(1);
-            }
-        });
+        Subscriber<Integer> subscriber = spy(new IntegerDefaultSubscriber());
         observable.subscribe(subscriber);
 
         InOrder inOrder = inOrder(subscriber);
@@ -766,5 +747,29 @@ public class FlowableSingleTest {
                 return o.singleElement();
             }
         });
+    }
+
+    static class IntegerDefaultSubscriber extends DefaultSubscriber<Integer>
+    {
+
+        @Override
+        public void onStart() {
+            request(1);
+        }
+
+        @Override
+        public void onComplete() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+
+        @Override
+        public void onNext(Integer integer) {
+            request(1);
+        }
     }
 }

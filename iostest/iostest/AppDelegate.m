@@ -20,27 +20,22 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    [RxTestRunner runResourceWithNSString:@"InternalOperatorsMaybe.txt"];
-    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.maybe.MaybeSwitchIfEmptySingleTest#emptyCancelRace"];
+//    [RxTestRunner runResourceWithNSString:@"basetests.txt"];
+    [RxTestRunner runSpecificWithNSString:@"io.reactivex.subscribers.TestSubscriberTest"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.subjects.ReplaySubjectBoundedConcurrencyTest#testConcurrentSizeAndHasAnyValueTimeBounded"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableReplayTest#testSynchronousDisconnect"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableReplayTest#testIssue2191_UnsubscribeSource"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableReplayTest#testIssue2191_SchedulerUnsubscribe"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableReplayTest"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableReplayTest#testBoundedReplayBuffer"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableReplayTest#testTimedAndSizedTruncation"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableReplayTest#testBackpressure"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.subjects.ReplaySubjectBoundedConcurrencyTest#testConcurrentSizeAndHasAnyValue"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.subjects.ReplaySubjectBoundedConcurrencyTest#testReplaySubjectEmissionSubscriptionRace"];
     
-    
-//    [CoTouchlabDopplTestingDopplJunitTestHelper runResourceWithNSString:@"tests0.txt"];
-    
-//    [CoTouchlabDopplTestingDopplJunitTestHelper runResourceWithNSString:@"InternalOperatorsFlowable.txt"];
-    
-//    [CoTouchlabDopplTestingDopplJunitTestHelper runResourceWithNSString:@"TheRest2.txt"];
-    
-//    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.completable.CompletableAmbTest#innerErrorRace"];
-//    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.completable.CompletableAmbTest#goCrashy"];
-    
-//    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.completable.CompletableAmbTest#nullSourceSuccessRace"];
-    
-//    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.maybe.MaybeAmbTest#innerErrorRace"];
-//    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableAmbTest#onErrorRace"];
-//    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableRetryWithPredicateTest#retryDisposeRace"];
-//    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.processors.AsyncProcessorTest#testSubscribeCompletionRaceCondition"];
-    
-//    [CoTouchlabDopplTestingDopplJunitTestHelper runSpecificWithNSString:@"io.reactivex.internal.operators.flowable.FlowableCreateTest"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.schedulers.ExecutorSchedulerTest#testRecursionAndOuterUnsubscribe"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.schedulers.ExecutorSchedulerTest#testSubscribeWithScheduler"];
+//    [RxTestRunner runSpecificWithNSString:@"io.reactivex.schedulers.ExecutorSchedulerTest#runnableDisposedAsync"];
     
     return YES;
 }

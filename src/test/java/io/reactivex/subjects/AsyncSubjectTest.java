@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.junit.*;
 import org.mockito.*;
 
+import co.touchlab.doppl.testing.DopplHacks;
 import io.reactivex.*;
 import io.reactivex.disposables.*;
 import io.reactivex.exceptions.TestException;
@@ -186,7 +187,8 @@ public class AsyncSubjectTest {
     /**
      * Can receive timeout if subscribe never receives an onError/onComplete ... which reveals a race condition.
      */
-    @Test(timeout = 10000)
+    @Test(timeout = 15000)
+    @DopplHacks//Longer timeout
     public void testSubscribeCompletionRaceCondition() {
         /*
          * With non-threadsafe code this fails most of the time on my dev laptop and is non-deterministic enough
@@ -194,7 +196,7 @@ public class AsyncSubjectTest {
          *
          * With the synchronization code in place I can not get this to fail on my laptop.
          */
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 30; i++) {
             final AsyncSubject<String> subject = AsyncSubject.create();
             final AtomicReference<String> value1 = new AtomicReference<String>();
 

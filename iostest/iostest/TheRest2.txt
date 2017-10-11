@@ -8,14 +8,14 @@ io.reactivex.parallel.ParallelReduceFullTest
 io.reactivex.parallel.ParallelReduceTest
 io.reactivex.parallel.ParallelRunOnTest
 io.reactivex.parallel.ParallelSortedJoinTest
-#io.reactivex.ParamValidationCheckerTest
+io.reactivex.ParamValidationCheckerTest
 io.reactivex.plugins.RxJavaPluginsTest
-#io.reactivex.processors.AsyncProcessorTest
+io.reactivex.processors.AsyncProcessorTest
 io.reactivex.processors.BehaviorProcessorTest
 #io.reactivex.processors.DelayedFlowableProcessorTest
 #io.reactivex.processors.FlowableProcessorTest
 io.reactivex.processors.PublishProcessorTest
-#io.reactivex.processors.ReplayProcessorBoundedConcurrencyTest
+io.reactivex.processors.ReplayProcessorBoundedConcurrencyTest
 io.reactivex.processors.ReplayProcessorConcurrencyTest
 io.reactivex.processors.ReplayProcessorTest
 io.reactivex.processors.SerializedProcessorTest
@@ -39,7 +39,7 @@ io.reactivex.subjects.BehaviorSubjectTest
 io.reactivex.subjects.CompletableSubjectTest
 io.reactivex.subjects.MaybeSubjectTest
 io.reactivex.subjects.PublishSubjectTest
-#io.reactivex.subjects.ReplaySubjectBoundedConcurrencyTest
+io.reactivex.subjects.ReplaySubjectBoundedConcurrencyTest
 io.reactivex.subjects.ReplaySubjectConcurrencyTest
 io.reactivex.subjects.ReplaySubjectTest
 io.reactivex.subjects.SerializedSubjectTest
@@ -51,6 +51,6 @@ io.reactivex.subscribers.ResourceSubscriberTest
 io.reactivex.subscribers.SafeSubscriberTest
 io.reactivex.subscribers.SafeSubscriberWithPluginTest
 io.reactivex.subscribers.SerializedSubscriberTest
-#io.reactivex.subscribers.TestSubscriberTest
+io.reactivex.subscribers.TestSubscriberTest
 io.reactivex.TransformerTest
 io.reactivex.XFlatMapTest

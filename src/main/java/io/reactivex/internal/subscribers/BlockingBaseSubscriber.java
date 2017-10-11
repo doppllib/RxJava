@@ -26,7 +26,7 @@ implements FlowableSubscriber<T> {
     T value;
     Throwable error;
 
-    Subscription s;
+    volatile Subscription s;
 
     volatile boolean cancelled;
 

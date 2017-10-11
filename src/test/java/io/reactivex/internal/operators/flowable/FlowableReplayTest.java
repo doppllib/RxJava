@@ -21,6 +21,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 
+import co.touchlab.doppl.testing.MockGen;
 import io.reactivex.annotations.NonNull;
 import org.junit.*;
 import org.mockito.InOrder;
@@ -41,6 +42,7 @@ import io.reactivex.processors.PublishProcessor;
 import io.reactivex.schedulers.*;
 import io.reactivex.subscribers.TestSubscriber;
 
+@MockGen(classes = "io.reactivex.internal.operators.flowable.FlowableReplayTest.InprocessWorker")
 public class FlowableReplayTest {
     @Test
     public void testBufferedReplay() {
@@ -697,7 +699,7 @@ public class FlowableReplayTest {
     }
 
 
-    private static class InprocessWorker extends Worker {
+    static class InprocessWorker extends Worker {
         private final Disposable mockDisposable;
         public boolean unsubscribed;
 

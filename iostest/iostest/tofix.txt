@@ -8,3 +8,5 @@ io.reactivex.subscribers.TestSubscriberTest
 io.reactivex.processors.AsyncProcessorTest
 io.reactivex.ParamValidationCheckerTest
 io.reactivex.internal.operators.flowable.FlowableConcatTest
+io.reactivex.internal.subscriptions.DeferredScalarSubscriptionTest
+io.reactivex.processors.ReplayProcessorBoundedConcurrencyTest

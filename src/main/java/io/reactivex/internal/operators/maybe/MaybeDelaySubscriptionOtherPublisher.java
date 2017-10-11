@@ -48,7 +48,7 @@ public final class MaybeDelaySubscriptionOtherPublisher<T, U> extends AbstractMa
 
         MaybeSource<T> source;
 
-        Subscription s;
+        volatile Subscription s;
 
         OtherSubscriber(MaybeObserver<? super T> actual, MaybeSource<T> source) {
             this.main = new DelayMaybeObserver<T>(actual);

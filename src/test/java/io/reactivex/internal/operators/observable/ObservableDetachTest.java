@@ -19,6 +19,8 @@ import java.lang.ref.WeakReference;
 
 import org.junit.*;
 
+import co.touchlab.doppl.testing.DopplHacks;
+import co.touchlab.doppl.utils.PlatformUtils;
 import io.reactivex.*;
 import io.reactivex.exceptions.TestException;
 import io.reactivex.functions.Function;
@@ -30,7 +32,10 @@ public class ObservableDetachTest {
     Object o;
 
     @Test
+    @DopplHacks
     public void just() throws Exception {
+        if(PlatformUtils.isJ2objc())
+            return;
         o = new Object();
 
         WeakReference<Object> wr = new WeakReference<Object>(o);
@@ -114,7 +119,10 @@ public class ObservableDetachTest {
     }
 
     @Test
+    @DopplHacks
     public void justUnsubscribed() throws Exception {
+        if(PlatformUtils.isJ2objc())
+            return;
         o = new Object();
 
         WeakReference<Object> wr = new WeakReference<Object>(o);

@@ -13,6 +13,9 @@
 
 package io.reactivex.internal.operators.flowable;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
+
 import static org.junit.Assert.*;
 
 import java.util.*;
@@ -22,6 +25,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.*;
 import org.reactivestreams.*;
 
+import co.touchlab.doppl.testing.DopplHacks;
 import io.reactivex.*;
 import io.reactivex.internal.schedulers.IoScheduler;
 import io.reactivex.internal.subscriptions.BooleanSubscription;
@@ -220,9 +224,10 @@ public class FlowableMergeMaxConcurrentTest {
             assertEquals(expected, actual);
         }
     }
-    @Test(timeout = 10000)
+    @Test(timeout = 15000)
+    @DopplHacks //Longer timeout
     public void testSimpleOneLessAsyncLoop() {
-        for (int i = 0; i < 200; i++) {
+        for (@AutoreleasePool int i = 0; i < 200; i++) {
             testSimpleOneLessAsync();
         }
     }

@@ -13,6 +13,9 @@
 
 package io.reactivex.internal.operators.flowable;
 
+import com.google.j2objc.annotations.Weak;
+import com.google.j2objc.annotations.WeakOuter;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.*;
 

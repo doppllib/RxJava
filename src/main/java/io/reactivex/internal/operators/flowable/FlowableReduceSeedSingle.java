@@ -56,7 +56,7 @@ public final class FlowableReduceSeedSingle<T, R> extends Single<R> {
 
         R value;
 
-        Subscription s;
+        volatile Subscription s;
 
         ReduceSeedObserver(SingleObserver<? super R> actual, BiFunction<R, ? super T, R> reducer, R value) {
             this.actual = actual;

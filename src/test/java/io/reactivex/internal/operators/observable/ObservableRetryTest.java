@@ -13,6 +13,9 @@
 
 package io.reactivex.internal.operators.observable;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -698,7 +701,7 @@ public class ObservableRetryTest {
 
                 int m = 5000;
                 final CountDownLatch cdl = new CountDownLatch(m);
-                for (int i = 0; i < m; i++) {
+                for (@AutoreleasePool int i = 0; i < m; i++) {
                     final int j = i;
                     exec.execute(new Runnable() {
                         @Override

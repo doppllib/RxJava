@@ -34,7 +34,7 @@ public final class FlowableDetach<T> extends AbstractFlowableWithUpstream<T, T> 
 
         Subscriber<? super T> actual;
 
-        Subscription s;
+        volatile Subscription s;
 
         DetachSubscriber(Subscriber<? super T> actual) {
             this.actual = actual;

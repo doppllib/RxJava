@@ -24,6 +24,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.*;
 import org.reactivestreams.*;
 
+import co.touchlab.doppl.testing.DopplHacks;
+import co.touchlab.doppl.utils.PlatformUtils;
 import io.reactivex.*;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.*;
@@ -86,7 +88,10 @@ public class ExceptionsTest {
     }
 
     @Test
+    @DopplHacks //TODO
     public void testStackOverflowWouldOccur() {
+        if(PlatformUtils.isJ2objc())
+            return;
         final PublishSubject<Integer> a = PublishSubject.create();
         final PublishSubject<Integer> b = PublishSubject.create();
         final int MAX_STACK_DEPTH = 800;
@@ -144,8 +149,11 @@ public class ExceptionsTest {
         assertTrue(depth.get() >= MAX_STACK_DEPTH);
     }
 
-    @Test(expected = StackOverflowError.class)
+    @Test//(expected = StackOverflowError.class)
+    @DopplHacks
     public void testStackOverflowErrorIsThrown() {
+        if(PlatformUtils.isJ2objc())
+            return;
         Observable.just(1).subscribe(new Observer<Integer>() {
 
             @Override

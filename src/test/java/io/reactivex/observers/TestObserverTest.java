@@ -42,9 +42,6 @@ import io.reactivex.subscribers.TestSubscriber;
 
 public class TestObserverTest {
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @Test
     public void testAssert() {
         Flowable<Integer> oi = Flowable.fromIterable(Arrays.asList(1, 2));
@@ -62,11 +59,17 @@ public class TestObserverTest {
         TestSubscriber<Integer> o = new TestSubscriber<Integer>();
         oi.subscribe(o);
 
-        thrown.expect(AssertionError.class);
         // FIXME different message format
 //        thrown.expectMessage("Number of items does not match. Provided: 1  Actual: 2");
 
-        o.assertValue(1);
+        try
+        {
+            o.assertValue(1);
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError);
+        }
         o.assertValueCount(2);
         o.assertTerminated();
     }
@@ -77,11 +80,17 @@ public class TestObserverTest {
         TestSubscriber<Integer> o = new TestSubscriber<Integer>();
         oi.subscribe(o);
 
-        thrown.expect(AssertionError.class);
         // FIXME different message format
 //        thrown.expectMessage("Value at index: 1 expected to be [3] (Integer) but was: [2] (Integer)");
 
-        o.assertValues(1, 3);
+        try
+        {
+            o.assertValues(1, 3);
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError);
+        }
         o.assertValueCount(2);
         o.assertTerminated();
     }
@@ -105,9 +114,14 @@ public class TestObserverTest {
 
         o.assertValues(1, 2);
 
-        thrown.expect(AssertionError.class);
-
-        o.assertNever(2);
+        try
+        {
+            o.assertNever(2);
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError);
+        }
         o.assertValueCount(2);
         o.assertTerminated();
     }
@@ -120,14 +134,19 @@ public class TestObserverTest {
 
         ts.assertValues(1, 2);
 
-        thrown.expect(AssertionError.class);
-
-        ts.assertNever(new Predicate<Integer>() {
-            @Override
-            public boolean test(final Integer o) throws Exception {
-                return o == 1;
-            }
-        });
+        try
+        {
+            ts.assertNever(new Predicate<Integer>() {
+                @Override
+                public boolean test(final Integer o) throws Exception {
+                    return o == 1;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError);
+        }
     }
 
     @Test
@@ -153,13 +172,19 @@ public class TestObserverTest {
         p.onNext(1);
         p.onNext(2);
 
-        thrown.expect(AssertionError.class);
         // FIXME different message format
 //        thrown.expectMessage("No terminal events received.");
 
         o.assertValues(1, 2);
         o.assertValueCount(2);
-        o.assertTerminated();
+        try
+        {
+            o.assertTerminated();
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError);
+        }
     }
 
     @Test
@@ -1272,13 +1297,18 @@ public class TestObserverTest {
 
         Observable.empty().subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("No values");
-        ts.assertValue(new Predicate<Object>() {
-            @Override public boolean test(final Object o) throws Exception {
-                return false;
-            }
-        });
+        try
+        {
+            ts.assertValue(new Predicate<Object>() {
+                @Override public boolean test(final Object o) throws Exception {
+                    return false;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("No values"));
+        }
     }
 
     @Test
@@ -1300,13 +1330,18 @@ public class TestObserverTest {
 
         Observable.just(1).subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("Value not present");
-        ts.assertValue(new Predicate<Integer>() {
-            @Override public boolean test(final Integer o) throws Exception {
-                return o != 1;
-            }
-        });
+        try
+        {
+            ts.assertValue(new Predicate<Integer>() {
+                @Override public boolean test(final Integer o) throws Exception {
+                    return o != 1;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("Value not present"));
+        }
     }
 
     @Test
@@ -1315,13 +1350,18 @@ public class TestObserverTest {
 
         Observable.just(1, 2).subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("Value present but other values as well");
-        ts.assertValue(new Predicate<Integer>() {
-            @Override public boolean test(final Integer o) throws Exception {
-                return o == 1;
-            }
-        });
+        try
+        {
+            ts.assertValue(new Predicate<Integer>() {
+                @Override public boolean test(final Integer o) throws Exception {
+                    return o == 1;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("Value present but other values as well"));
+        }
     }
 
     @Test
@@ -1330,13 +1370,18 @@ public class TestObserverTest {
 
         Observable.empty().subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("No values");
-        ts.assertValueAt(0, new Predicate<Object>() {
-            @Override public boolean test(final Object o) throws Exception {
-                return false;
-            }
-        });
+        try
+        {
+            ts.assertValueAt(0, new Predicate<Object>() {
+                @Override public boolean test(final Object o) throws Exception {
+                    return false;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("No values"));
+        }
     }
 
     @Test
@@ -1358,13 +1403,18 @@ public class TestObserverTest {
 
         Observable.just(1, 2, 3).subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("Value not present");
-        ts.assertValueAt(2, new Predicate<Integer>() {
-            @Override public boolean test(final Integer o) throws Exception {
-                return o != 3;
-            }
-        });
+        try
+        {
+            ts.assertValueAt(2, new Predicate<Integer>() {
+                @Override public boolean test(final Integer o) throws Exception {
+                    return o != 3;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("Value not present"));
+        }
     }
 
     @Test
@@ -1373,13 +1423,18 @@ public class TestObserverTest {
 
         Observable.just(1, 2).subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("Invalid index: 2 (latch = 0, values = 2, errors = 0, completions = 1)");
-        ts.assertValueAt(2, new Predicate<Integer>() {
-            @Override public boolean test(final Integer o) throws Exception {
-                return o == 1;
-            }
-        });
+        try
+        {
+            ts.assertValueAt(2, new Predicate<Integer>() {
+                @Override public boolean test(final Integer o) throws Exception {
+                    return o == 1;
+                }
+            });
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("Invalid index: 2 (latch = 0, values = 2, errors = 0, completions = 1)"));
+        }
     }
 
     @Test
@@ -1388,9 +1443,14 @@ public class TestObserverTest {
 
         Observable.empty().subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("No values");
-        ts.assertValueAt(0, "a");
+        try
+        {
+            ts.assertValueAt(0, "a");
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("No values"));
+        }
     }
 
     @Test
@@ -1408,9 +1468,14 @@ public class TestObserverTest {
 
         Observable.just("a", "b", "c").subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("Expected: b (class: String), Actual: c (class: String) (latch = 0, values = 3, errors = 0, completions = 1)");
-        ts.assertValueAt(2, "b");
+        try
+        {
+            ts.assertValueAt(2, "b");
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("Expected: b (class: String), Actual: c (class: String) (latch = 0, values = 3, errors = 0, completions = 1)"));
+        }
     }
 
     @Test
@@ -1419,9 +1484,14 @@ public class TestObserverTest {
 
         Observable.just("a", "b").subscribe(ts);
 
-        thrown.expect(AssertionError.class);
-        thrown.expectMessage("Invalid index: 2 (latch = 0, values = 2, errors = 0, completions = 1)");
-        ts.assertValueAt(2, "c");
+        try
+        {
+            ts.assertValueAt(2, "c");
+        }
+        catch(Throwable e)
+        {
+            assertTrue(e instanceof AssertionError && e.getMessage().contains("Invalid index: 2 (latch = 0, values = 2, errors = 0, completions = 1)"));
+        }
     }
 
     @Test

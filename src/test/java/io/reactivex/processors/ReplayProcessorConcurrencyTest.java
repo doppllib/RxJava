@@ -13,6 +13,9 @@
 
 package io.reactivex.processors;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.*;
@@ -164,7 +167,7 @@ public class ReplayProcessorConcurrencyTest {
         final List<List<Long>> listOfListsOfValues = Collections.synchronizedList(new ArrayList<List<Long>>());
         final List<Thread> threads = Collections.synchronizedList(new ArrayList<Thread>());
 
-        for (int i = 1; i <= 200; i++) {
+        for (@AutoreleasePool int i = 1; i <= 200; i++) {
             final int count = i;
             if (count == 20) {
                 // start source data after we have some already subscribed
@@ -226,7 +229,7 @@ public class ReplayProcessorConcurrencyTest {
      */
     @Test(timeout = 10000)
     public void testSubscribeCompletionRaceCondition() {
-        for (int i = 0; i < 50; i++) {
+        for (@AutoreleasePool int i = 0; i < 50; i++) {
             final ReplayProcessor<String> subject = ReplayProcessor.create();
             final AtomicReference<String> value1 = new AtomicReference<String>();
 
@@ -289,7 +292,7 @@ public class ReplayProcessorConcurrencyTest {
     @Test
     public void testRaceForTerminalState() {
         final List<Integer> expected = Arrays.asList(1);
-        for (int i = 0; i < 100000; i++) {
+        for (@AutoreleasePool int i = 0; i < 100000; i++) {
             TestSubscriber<Integer> ts = new TestSubscriber<Integer>();
             Flowable.just(1).subscribeOn(Schedulers.computation()).cache().subscribe(ts);
             ts.awaitTerminalEvent();
@@ -323,7 +326,7 @@ public class ReplayProcessorConcurrencyTest {
         Scheduler s = Schedulers.io();
         Scheduler.Worker worker = Schedulers.io().createWorker();
         try {
-            for (int i = 0; i < 50000; i++) {
+            for (@AutoreleasePool int i = 0; i < 50000; i++) {
                 if (i % 1000 == 0) {
                     System.out.println(i);
                 }

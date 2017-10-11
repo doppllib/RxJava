@@ -55,7 +55,7 @@ public final class CompletableMerge extends Completable {
 
         final CompositeDisposable set;
 
-        Subscription s;
+        volatile Subscription s;
 
         CompletableMergeSubscriber(CompletableObserver actual, int maxConcurrency, boolean delayErrors) {
             this.actual = actual;

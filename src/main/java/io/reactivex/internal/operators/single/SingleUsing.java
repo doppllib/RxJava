@@ -95,7 +95,7 @@ public final class SingleUsing<T, U> extends Single<T> {
 
         final boolean eager;
 
-        Disposable d;
+        volatile Disposable d;
 
         UsingSingleObserver(SingleObserver<? super T> actual, U resource, boolean eager,
                 Consumer<? super U> disposer) {

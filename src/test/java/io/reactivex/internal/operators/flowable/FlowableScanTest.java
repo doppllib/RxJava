@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.*;
 import org.junit.*;
 import org.reactivestreams.*;
 
+import co.touchlab.doppl.testing.MockGen;
 import io.reactivex.*;
 import io.reactivex.Flowable;
 import io.reactivex.exceptions.*;
@@ -33,6 +34,7 @@ import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.processors.PublishProcessor;
 import io.reactivex.subscribers.*;
 
+@MockGen(classes = "io.reactivex.internal.operators.flowable.FlowableScanTest.MySubscription")
 public class FlowableScanTest {
 
     @Test
@@ -327,23 +329,7 @@ public class FlowableScanTest {
         Flowable<Integer> o = Flowable.unsafeCreate(new Publisher<Integer>() {
             @Override
             public void subscribe(final Subscriber<? super Integer> subscriber) {
-                Subscription p = spy(new Subscription() {
-
-                    private AtomicBoolean requested = new AtomicBoolean(false);
-
-                    @Override
-                    public void request(long n) {
-                        if (requested.compareAndSet(false, true)) {
-                            subscriber.onNext(1);
-                            subscriber.onComplete();
-                        }
-                    }
-
-                    @Override
-                    public void cancel() {
-
-                    }
-                });
+                Subscription p = spy(new MySubscription(subscriber));
                 producer.set(p);
                 subscriber.onSubscribe(p);
             }
@@ -679,6 +665,7 @@ public class FlowableScanTest {
             @Override
             public void onNext(Integer t) {
                 super.onNext(t);
+                System.out.println("scanTake - "+ t);
                 onComplete();
                 cancel();
             }
@@ -711,6 +698,32 @@ public class FlowableScanTest {
             for (int i = 0; i <= n; i++) {
                 assertEquals(i, list.get(i).intValue());
             }
+        }
+    }
+
+    static class MySubscription implements Subscription
+    {
+
+        private final Subscriber<? super Integer> subscriber;
+        private       AtomicBoolean               requested;
+
+        public MySubscription(Subscriber<? super Integer> subscriber)
+        {
+            this.subscriber = subscriber;
+            requested = new AtomicBoolean(false);
+        }
+
+        @Override
+        public void request(long n) {
+            if (requested.compareAndSet(false, true)) {
+                subscriber.onNext(1);
+                subscriber.onComplete();
+            }
+        }
+
+        @Override
+        public void cancel() {
+
         }
     }
 }

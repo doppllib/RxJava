@@ -48,7 +48,7 @@ public final class FlowableAnySingle<T> extends Single<Boolean> implements FuseT
 
         final Predicate<? super T> predicate;
 
-        Subscription s;
+        volatile Subscription s;
 
         boolean done;
 

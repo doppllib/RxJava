@@ -12,6 +12,8 @@
  */
 package io.reactivex.subscribers;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
 import java.util.concurrent.atomic.*;
 
 import org.reactivestreams.*;
@@ -236,7 +238,7 @@ implements FlowableSubscriber<T>, Subscription, Disposable {
             actual.onError(t);
         } finally {
             done.countDown();
-            j2ojbcCleanUp();
+//            j2ojbcCleanUp();
         }
     }
 
@@ -255,7 +257,7 @@ implements FlowableSubscriber<T>, Subscription, Disposable {
             actual.onComplete();
         } finally {
             done.countDown();
-            j2ojbcCleanUp();
+//            j2ojbcCleanUp();
         }
     }
 

@@ -65,9 +65,9 @@ public final class FlowableCollectSingle<T, U> extends Single<U> implements Fuse
 
         final U u;
 
-        Subscription s;
+        volatile Subscription s;
 
-        boolean done;
+        volatile boolean done;
 
         CollectSubscriber(SingleObserver<? super U> actual, U u, BiConsumer<? super U, ? super T> collector) {
             this.actual = actual;

@@ -13,6 +13,9 @@
 
 package io.reactivex.internal.operators.flowable;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
+
 import static org.junit.Assert.*;
 
 import static org.mockito.Mockito.*;
@@ -133,7 +136,7 @@ public class FlowableConcatTest {
 
     @Test
     public void testNestedAsyncConcatLoop() throws Throwable {
-        for (int i = 0; i < 500; i++) {
+        for (@AutoreleasePool int i = 0; i < 500; i++) {
             if (i % 10 == 0) {
                 System.out.println("testNestedAsyncConcat >> " + i);
             }

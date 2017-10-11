@@ -35,7 +35,7 @@ public final class ObservableFromPublisher<T> extends Observable<T> {
     implements FlowableSubscriber<T>, Disposable {
 
         final Observer<? super T> actual;
-        Subscription s;
+        volatile Subscription s;
 
         PublisherSubscriber(Observer<? super T> o) {
             this.actual = o;

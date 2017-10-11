@@ -13,6 +13,9 @@
 
 package io.reactivex.internal.operators.observable;
 
+import com.google.j2objc.annotations.AutoreleasePool;
+
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -202,7 +205,7 @@ public class ObservableMergeTest {
 
     @Test
     public void testSynchronizationOfMultipleSequencesLoop() throws Throwable {
-        for (int i = 0; i < 100; i++) {
+        for (@AutoreleasePool int i = 0; i < 100; i++) {
             System.out.println("testSynchronizationOfMultipleSequencesLoop > " + i);
             testSynchronizationOfMultipleSequences();
         }
@@ -458,7 +461,7 @@ public class ObservableMergeTest {
 
     @Test
     public void testEarlyUnsubscribe() {
-        for (int i = 0; i < 10; i++) {
+        for (@AutoreleasePool int i = 0; i < 10; i++) {
             TestScheduler scheduler1 = new TestScheduler();
             AtomicBoolean os1 = new AtomicBoolean(false);
             Observable<Long> o1 = createObservableOf5IntervalsOf1SecondIncrementsWithSubscriptionHook(scheduler1, os1);
@@ -538,7 +541,7 @@ public class ObservableMergeTest {
     public void testConcurrency() {
         Observable<Integer> o = Observable.range(1, 10000).subscribeOn(Schedulers.newThread());
 
-        for (int i = 0; i < 10; i++) {
+        for (@AutoreleasePool int i = 0; i < 10; i++) {
             Observable<Integer> merge = Observable.merge(o, o, o);
             TestObserver<Integer> ts = new TestObserver<Integer>();
             merge.subscribe(ts);
@@ -591,7 +594,7 @@ public class ObservableMergeTest {
             }
         });
 
-        for (int i = 0; i < 10; i++) {
+        for (@AutoreleasePool int i = 0; i < 10; i++) {
             Observable<Integer> merge = Observable.merge(o, o, o);
             TestObserver<Integer> ts = new TestObserver<Integer>();
             merge.subscribe(ts);
@@ -638,7 +641,7 @@ public class ObservableMergeTest {
             }
         });
 
-        for (int i = 0; i < 10; i++) {
+        for (@AutoreleasePool int i = 0; i < 10; i++) {
             Observable<Integer> merge = Observable.merge(o, o, o);
             TestObserver<Integer> ts = new TestObserver<Integer>();
             merge.subscribe(ts);
@@ -684,7 +687,7 @@ public class ObservableMergeTest {
 
     @Test
     public void testBackpressureUpstream2InLoop() throws InterruptedException {
-        for (int i = 0; i < 1000; i++) {
+        for (@AutoreleasePool int i = 0; i < 1000; i++) {
             System.err.flush();
             System.out.println("---");
             System.out.flush();
@@ -1088,7 +1091,7 @@ public class ObservableMergeTest {
     }
     @Test
     public void testSlowMergeFullScalar() {
-        for (final int req : new int[] { 16, 32, 64, 128, 256 }) {
+        for (@AutoreleasePool final int req : new int[] { 16, 32, 64, 128, 256 }) {
             TestObserver<Integer> ts = new TestObserver<Integer>() {
                 int remaining = req;
 
@@ -1105,7 +1108,7 @@ public class ObservableMergeTest {
     }
     @Test
     public void testSlowMergeHiddenScalar() {
-        for (final int req : new int[] { 16, 32, 64, 128, 256 }) {
+        for (@AutoreleasePool final int req : new int[] { 16, 32, 64, 128, 256 }) {
             TestObserver<Integer> ts = new TestObserver<Integer>() {
                 int remaining = req;
                 @Override

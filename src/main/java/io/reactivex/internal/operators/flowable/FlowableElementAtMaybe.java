@@ -47,7 +47,7 @@ public final class FlowableElementAtMaybe<T> extends Maybe<T> implements FuseToF
 
         final long index;
 
-        Subscription s;
+        volatile Subscription s;
 
         long count;
 

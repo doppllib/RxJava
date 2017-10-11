@@ -44,7 +44,7 @@ public final class FlowableDoOnLifecycle<T> extends AbstractFlowableWithUpstream
         final LongConsumer onRequest;
         final Action onCancel;
 
-        Subscription s;
+        volatile Subscription s;
 
         SubscriptionLambdaSubscriber(Subscriber<? super T> actual,
                 Consumer<? super Subscription> onSubscribe,

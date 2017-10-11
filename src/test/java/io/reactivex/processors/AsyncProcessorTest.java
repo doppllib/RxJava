@@ -206,7 +206,7 @@ public class AsyncProcessorTest extends DelayedFlowableProcessorTest<Object> {
          *
          * With the synchronization code in place I can not get this to fail on my laptop.
          */
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 30; i++) {
             final AsyncProcessor<String> subject = AsyncProcessor.create();
             final AtomicReference<String> value1 = new AtomicReference<String>();
 

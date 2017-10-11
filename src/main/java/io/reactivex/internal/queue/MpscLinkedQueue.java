@@ -91,6 +91,7 @@ public final class MpscLinkedQueue<T> implements SimplePlainQueue<T> {
             // we have to null out the value because we are going to hang on to the node
             final T nextValue = nextNode.getAndNullValue();
             spConsumerNode(nextNode);
+            currConsumerNode.soNext(null);
             return nextValue;
         }
         else if (currConsumerNode != lvProducerNode()) {
@@ -117,6 +118,7 @@ public final class MpscLinkedQueue<T> implements SimplePlainQueue<T> {
     public void clear() {
         while (poll() != null && !isEmpty()) { } // NOPMD
     }
+
     LinkedQueueNode<T> lvProducerNode() {
         return producerNode.get();
     }
